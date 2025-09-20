@@ -1,12 +1,17 @@
 import uuid
 from Models.db import db
+from datetime import datetime
 
 class User(db.model):
+    __tablename__= "users"
+    
     id = db.Column(db.String(36),primary_key = True, default = lambda: str(uuid.uuid4()))
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique = True, nullable = False)
-    password = db.Column(db.String(200), nullable = False)
-    role = db.Column(db.String(20), default = "user") # possible roles: user, admin
+    password = db.Column(db.String(64), nullable = False) # SHA -256 -> 64 hex chars
+    salt = db.Column(db.String(32), nullable = False) # 16 bytes hex
+    role = db.Column(db.String(20), default = "cliente") # possible roles: user, admin
+    created_at = db.Column(db.Datetime, default=datetime.utcnow)
     
     def to_dict(self):
         return{
