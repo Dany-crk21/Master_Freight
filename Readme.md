@@ -42,34 +42,34 @@ Diagrama simple de entidades y relaciones:
 **Linux / macOS:**
 ```bash
 python3 -m venv <nombre_del_entorno>
-
+```
 **Windows:**
 ```bash
 python -m venv <nombre_del_entorno>
-
+```
 ### 2. Activar el entorno virtual
 **Linux / macOS:**
 ```bash
 source <nombre_del_entorno>/bin/activate
-
+```
 **Windows:**
 ```bash
 <nombre_del_entorno>\Scripts\activate
-
+```
 ### 3. Instalar dependencias:
 ```bash
 pip install Flask Flask-SQLAlchemy PyMySQL python-dotenv
-
+```
 ## 🛢️ Configuración de la base de datos
 ### Antes de ejecutar la aplicación, configurar las variables de entorno:
 
 ```env
 MYSQL_USER=<tu_usuario>
 MYSQL_PASSWORD=<tu_contraseña>
-MYSQL_DATABASE=<nombre_de_la_base_de_datos>
 MYSQL_HOST=<host_de_mysql>
-
+```
 ## 🚀 Instalación y ejecución
+MYSQL_DATABASE=<nombre_de_la_base_de_datos>
 
 ### 1. Clona el repositorio: 
 git clone <url_del_repositorio>
@@ -77,11 +77,12 @@ git clone <url_del_repositorio>
 ### 2. Accede al directorio del proyecto:
 ```bash
 cd <nombre_del_proyecto>
-
+```
 ### 3. Instala las dependencias desde el requirements.txt
 ```bash
 pip install -r requirements.txt
-
+```
 ### 4. Ejecuta la aplicacion:
 ```bash
 python app.py
+```
