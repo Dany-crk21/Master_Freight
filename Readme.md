@@ -58,6 +58,7 @@ source <nombre_del_entorno>/bin/activate
 ```bash
 <nombre_del_entorno>\Scripts\activate
 ```
+
 ### 3. Instalar dependencias:
 ```bash
 pip install Flask Flask-SQLAlchemy PyMySQL python-dotenv
@@ -69,8 +70,8 @@ pip install Flask Flask-SQLAlchemy PyMySQL python-dotenv
 ```env
 MYSQL_USER=<tu_usuario>
 MYSQL_PASSWORD=<tu_contraseña>
-MYSQL_DATABASE=<nombre_de_la_base_de_datos>
 MYSQL_HOST=<host_de_mysql>
+MYSQL_DATABASE=<nombre_de_la_base_de_datos>
 ```
 
 ## 🚀 Instalación y ejecución
