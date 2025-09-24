@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, render_template
-from Models.Users_models import User
-from Models.db import db
+from models.users_models import User
+from models.db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from flask import current_app as app
@@ -17,7 +17,7 @@ def token_required(role=None):
                 if not token:
                     return jsonify({"message":"Token is missing!"}), 401
                 try:
-                    token = token.split(" ")[1] # Bearer <token>
+                    token = token.split()[1] # Bearer <token>
                     data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
                     current_user = User.query.get(data['id'])
                     if not current_user:
@@ -25,7 +25,7 @@ def token_required(role=None):
                     if role and current_user.role != role:
                         return jsonify({"message":"Unauthorized access"}), 403
                 except Exception as e:
-                    return jsonify({"message":"Token is invalid!",'error':str(e)},), 401
+                    return jsonify({"message":"Token is invalid!",'error':str(e)}), 401
                 return f(current_user, *args, **kwargs)
         return decorated
     return decorator
@@ -69,17 +69,21 @@ def login():
         "token": token,
         'role': user.role,
         'username': user.username
-        })
+    }), 200
+
+@auth_bp.route("/login", methods=["GET"])
+def login_page():
+    return render_template("login.html")
     
 @auth_bp.route("/dashboard", methods=["GET"])
-def dashboard_page():
-    return render_template("dashboard.html")
+def dashboard_page(current_user):
+    return render_template("cliente_dashboard.html")
 
 @auth_bp.route("/api/dashboard", methods=["GET"])
 @token_required()
 def dashboard_api(current_user):
     return jsonify({
-        "username": current_user.name,
+        "username": current_user.username,
         'role': current_user.role
     })
 
@@ -93,7 +97,7 @@ def list_users(current_user):
             "username": u.username,
             "email": u.email,
             "role": u.role
-        }for u in users
+        } for u in users
     ]
     return jsonify(users_data)
     
