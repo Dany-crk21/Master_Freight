@@ -1,8 +1,9 @@
+ 
 import uuid
 from Models.db import db
 from datetime import datetime
 
-class User(db.model):
+class User(db.Model):
     __tablename__= "users"
     
     id = db.Column(db.String(36),primary_key = True, default = lambda: str(uuid.uuid4()))
@@ -11,7 +12,7 @@ class User(db.model):
     password = db.Column(db.String(64), nullable = False) # SHA -256 -> 64 hex chars
     salt = db.Column(db.String(32), nullable = False) # 16 bytes hex
     role = db.Column(db.String(20), default = "cliente") # possible roles: user, admin
-    created_at = db.Column(db.Datetime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def to_dict(self):
         return{
