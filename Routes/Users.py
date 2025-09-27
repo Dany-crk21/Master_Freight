@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, render_template
-from models.users_models import User
-from models.db import db
+from Models.Users_models import User
+from Models.db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from flask import current_app as app
