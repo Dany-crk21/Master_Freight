@@ -6,8 +6,8 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config.from_object(config)
+app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db.init_app(app)
 migrate = Migrate(app,db)
 app.register_blueprint(auth_bp)
