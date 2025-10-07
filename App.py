@@ -13,7 +13,11 @@ migrate = Migrate(app,db)
 app.register_blueprint(auth_bp)
 
 from Routes.Users import auth_bp
-
+from flask import redirect, url_for
+@app.route('/')
+def home():
+    return redirect(url_for('auth.login_page'))
+    
 with app.app_context():
     db.create_all()  
 
