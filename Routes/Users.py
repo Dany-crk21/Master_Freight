@@ -76,6 +76,7 @@ def login_page():
     return render_template("login.html")
     
 @auth_bp.route("/dashboard", methods=["GET"])
+@token_required()
 def dashboard_page(current_user):
     return render_template("cliente_dashboard.html")
 
