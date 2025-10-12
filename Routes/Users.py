@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, render_template
 from Models.Users_models import User
 from Models.db import db
-from werkzeug.security import generate_password_hash, check_password_hash
+from Utils.security import make_password_hash, check_password
 import jwt
 from flask import current_app as app
 from functools import wraps
@@ -35,11 +35,15 @@ def register():
     data = request.get_json()
     if User.query.filter_by(email=data['email']).first():
         return jsonify({"message":"Email already exists"}), 400
-    hashed_password = generate_password_hash(data['password'])
+    if User.query.filter_by(username=data['username']).first():
+        return jsonify({'message':"Username already exists"}), 400
+    
+    hash_hex, salt_hex = make_password_hash(data['password'])
     new_user = User(
         username=data['username'],
         email=data['email'],
-        password= hashed_password,
+        password= hash_hex,
+        salt = salt_hex,
         role=data.get('role','user') # por defecto es 'user'
     )     
     db.session.add(new_user)
@@ -56,7 +60,7 @@ def register_page():
 def login():
     data = request.get_json()
     user = User.query.filter_by(email=data["email"]).first()
-    if not user or not check_password_hash(user.password, data["password"]):
+    if not user or not check_password(data["password"],user.password,user.salt):
         return jsonify({"message": "invalid credentials"}), 401
     
     token = jwt.encode({
