@@ -29,38 +29,36 @@ def token_required(role=None):
                 return f(current_user, *args, **kwargs)
         return decorated
     return decorator
-                    
-@auth_bp.route('/register', methods=['POST'])
-def register():
+
+
+@auth_bp.route('/register', methods=['GET', 'POST'])
+def register(): 
+    if request.method == 'GET':
+        return render_template('register.html')
     data = request.get_json()
     if User.query.filter_by(email=data['email']).first():
-        return jsonify({"message":"Email already exists"}), 400
+        return jsonify({'message':'Email already exists'}), 400
     if User.query.filter_by(username=data['username']).first():
-        return jsonify({'message':"Username already exists"}), 400
-    
+        return jsonify({'message':'Username already exists'}), 400
     hash_hex, salt_hex = make_password_hash(data['password'])
     new_user = User(
         username=data['username'],
         email=data['email'],
-        password= hash_hex,
-        salt = salt_hex,
-        role=data.get('role','user') # por defecto es 'user'
-    )     
+        password=hash_hex,
+        salt=salt_hex,
+        role=data.get('role','user') # Por defecto es 'user'
+    )
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({"message":"User created sucessfully"}), 201
-   
-    
-@auth_bp.route("/register", methods=["GET"])
-def register_page():
-    return render_template("register.html")
+    return jsonify({'message':'User created successfully'}), 201
 
-
-@auth_bp.route("/login", methods=["POST"])
+@auth_bp.route('/login', methods=['GET','POST'])
 def login():
+    if request.method == 'GET':
+        return render_template('login.html')
     data = request.get_json()
     user = User.query.filter_by(email=data["email"]).first()
-    if not user or not check_password(data["password"],user.password,user.salt):
+    if not user or not check_password(data["password"], user.password, user.salt):
         return jsonify({"message": "invalid credentials"}), 401
     
     token = jwt.encode({
@@ -75,9 +73,6 @@ def login():
         'username': user.username
     }), 200
 
-@auth_bp.route("/login", methods=["GET"])
-def login_page():
-    return render_template("login.html")
     
 @auth_bp.route("/dashboard", methods=["GET"])
 @token_required()
