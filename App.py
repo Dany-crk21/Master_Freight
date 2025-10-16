@@ -2,6 +2,8 @@ from flask import Flask, render_template, redirect, url_for
 from Config import config
 from Models.db import db
 from Routes.Users import auth_bp
+from Routes.Clientes import Clientes_bp
+from Routes.Fleteros import Fleteros_bp
 from flask_migrate import Migrate
 
 app = Flask(__name__)
