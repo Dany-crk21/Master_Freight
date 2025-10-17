@@ -1,6 +1,12 @@
 from flask import Flask, render_template, redirect, url_for
 from Config import config
+
 from Models.db import db
+from Models.Cliente import Cliente 
+from Models.Fletero import Fletero 
+from Models.SolicitudFlete import solicitudFlete
+from Models.Users_models import User
+
 from Routes.Users import auth_bp
 from Routes.Clientes import Clientes_bp
 from Routes.Fleteros import Fleteros_bp
