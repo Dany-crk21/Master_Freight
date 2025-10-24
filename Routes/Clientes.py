@@ -1,18 +1,21 @@
 from flask import Blueprint, request, jsonify
 from Models.SolicitudFlete import solicitudFlete
+from Models.Users_models import User
 from Models.db import db
 from datetime import datetime
-
+from Utils.security import token_required
+from Utils.security import make_password_hash, check_password
 Clientes_bp = Blueprint('clientes', __name__)
 # Rutas para clientes
-@Clientes_bp.route('/cliente/solicitar', methods=['post'])
-def solicitar_flete():
-    data = request.get.json()
+@Clientes_bp.route('/cliente/solicitar', methods=['POST'])
+@token_required(role='cliente')
+def solicitar_flete(current_user):
+    data = request.get_json()
     nueva_solicitud = solicitudFlete(
         origen=data['origen'],
         destino=data['destino'],
         detalle=data['detalle'],
-        cliente_id=data['cliente_id']
+        cliente_id=current_user.id
     )
     db.session.add(nueva_solicitud)
     db.session.commit()
@@ -20,8 +23,8 @@ def solicitar_flete():
 
 # Ver solicitudes del cliente
 @Clientes_bp.route('/cleinte/<int:cliente_id>/solicitudes', methods=['GET'])
-def ver_solicitudes(cliente_id):
-    solicitudes = solicitudFlete.query.filter_by(cliente_id=cliente_id).all()
+def ver_solicitudes(current_user):
+    solicitudes = solicitudFlete.query.filter_by(cliente_id=current_user.id).all()
     result = [{
         'id': s.id,
         'fecha': s.fecha,
