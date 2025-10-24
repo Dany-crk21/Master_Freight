@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from Models.SolicitudFlete import solicitudFlete
 from Models.db import db
+from Utils.security import token_required
 from datetime import datetime
 
 Fleteros_bp = Blueprint('fleteros', __name__)
