@@ -1,36 +1,38 @@
 from flask import Blueprint, request, jsonify
-from Models.SolicitudFlete import solicitudFlete
+from Models.SolicitudFlete import SolicitudFlete
 from Models.db import db
 from Utils.security import token_required
-from datetime import datetime
+
 
 Fleteros_bp = Blueprint('fleteros', __name__)
 
 # Ver solicitudes asignadas al fletero
 @Fleteros_bp.route('/fletero/<int:fletero_id>/solicitudes', methods=['GET'])
-def ver_solicitudes(fletero_id):
-    solicitudes = solicitudFlete.query.filter_by(estado='pendiente').all()
+@token_required(role='fletero')
+def ver_solicitudes(current_user):
+    solicitudes = SolicitudFlete.query.filter_by(estado='pendiente').all()
     result = [{
         'id': s.id,
-        'fecha': s.fecha,
+        'fecha': s.fecha.isoformat(),
         'estado': s.estado,
         'origen': s.origen,
         'destino': s.destino,
         'detalle': s.detalle,
         'fecha': s.fecha,
     }for s in solicitudes]
-    return jsonify(result)
+    return jsonify(result), 200
 
 # Aceptar o Rechazar solicitud
 @Fleteros_bp.route('/fletero/responder', methods=['PUT'])
-def responder_solicitud():
+@token_required(role='fletero')
+def responder_solicitud(current_user):
     data = request.get_json()
-    solicitud = solicitudFlete.query.get(data['solicitud_id'])
+    solicitud = SolicitudFlete.query.get(data['solicitud_id'])
     if not solicitud:
         return jsonify({'error': 'Solicitud no encontrada'}), 404
     
     solicitud.estado = data['estado'] # 'aceptada' o 'rechazada'
-    solicitud.fletero_id = data['fletero_id']
+    solicitud.fletero_id = current_user.id
     db.session.commit()
     return jsonify({"message": f"solicitud{data['estado']} correctamente"}), 200
 
