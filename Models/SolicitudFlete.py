@@ -1,8 +1,9 @@
 from Models.db import db
 from datetime import datetime
 
-class solicitudFlete(db.Model):
-    __tablename__='solicitudFlete'
+class SolicitudFlete(db.Model):
+    __tablename__='solicitudFletes'
+    
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
     estado = db.Column(db.String(50), default= 'pendiente')
@@ -10,11 +11,12 @@ class solicitudFlete(db.Model):
     destino = db.Column(db.String(100))
     detalle = db.Column(db.String(200))
     
-    cliente_id = db.Column(db.Integer, db.ForeignKey('clientes.id'), nullable=False)
-    fletero_id = db.Column(db.Integer, db.ForeignKey('fletero.id'), nullable=True)
+    #Foreign keys
+    cliente_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=False)
+    fletero_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=True)
 
-    cliente = db.relationship('clientes', foreign_keys=[cliente_id], back_populates='solicitudes')
-    fletero = db.relationship('fletero', foreign_keys=[fletero_id], back_populates='solicitudes')
+    cliente = db.relationship('User', foreign_Keys=[cliente_id], back_populates='solicitudes')
+    fletero = db.relationship('User', foreign_keys=[fletero_id])
     
     def to_dict(self):
         return{
@@ -25,5 +27,6 @@ class solicitudFlete(db.Model):
             'destino': self.destino,
             'detalle': self.detalle,
             'cliente_id': self.cliente_id,
-            'fletero_id': self.fletero_id}
+            'fletero_id': self.fletero_id
+            }
          
