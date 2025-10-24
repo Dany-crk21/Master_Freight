@@ -11,17 +11,17 @@ class SolicitudFlete(db.Model):
     destino = db.Column(db.String(100))
     detalle = db.Column(db.String(200))
     
-    #Foreign keys
+    #Relaciones con usuarios cliente y fletero
     cliente_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=False)
     fletero_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=True)
 
-    cliente = db.relationship('User', foreign_Keys=[cliente_id], back_populates='solicitudes')
-    fletero = db.relationship('User', foreign_keys=[fletero_id])
+    cliente = db.relationship('User', foreign_keys=[cliente_id], back_ref='solicitudes_cliente')
+    fletero = db.relationship('User', foreign_keys=[fletero_id], back_ref='solicitudes_fletero')
     
     def to_dict(self):
         return{
             'id': self.id,
-            'fecha': self.fecha,
+            'fecha': self.fecha.isoformat(),
             'estado': self.estado,
             'origen': self.origen,
             'destino': self.destino,
