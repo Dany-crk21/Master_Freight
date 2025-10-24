@@ -31,10 +31,15 @@ def token_required(role=None):
     return decorator
 
 
-@auth_bp.route('/register', methods=['GET', 'POST'])
-def register(): 
-    if request.method == 'GET':
-        return render_template('register.html')
+@auth_bp.route('/register/cliente', methods=['POST'])
+def register_cliente():
+    return register_with_role('cliente')
+
+@auth_bp.route('/register/fletero', methods=['POST'])
+def register_fletero():
+    return register_with_role('fletero')
+
+def register_with_role(role):
     data = request.get_json()
     if User.query.filter_by(email=data['email']).first():
         return jsonify({'message':'Email already exists'}), 400
@@ -44,13 +49,13 @@ def register():
     new_user = User(
         username=data['username'],
         email=data['email'],
-        password=hash_hex,
-        salt=salt_hex,
-        role=data.get('role','user') # Por defecto es 'user'
-    )
+        password = hash_hex,
+        salt = salt_hex,
+        role = role
+    ) 
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({'message':'User created successfully'}), 201
+    return jsonify({'message':'User created successfully'}),201
 
 @auth_bp.route('/login', methods=['GET','POST'])
 def login():
@@ -74,6 +79,7 @@ def login():
     }), 200
 
     
+# panel de usuario autenticado
 @auth_bp.route("/dashboard", methods=["GET"])
 @token_required()
 def dashboard_page(current_user):
