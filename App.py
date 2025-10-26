@@ -22,8 +22,9 @@ app.register_blueprint(Fleteros_bp)
 
 @app.route('/')
 def home():
-    return redirect(url_for('auth.login'))
-    
+    # return redirect(url_for('auth.login'))
+    return render_template('mapa.html')
+
 with app.app_context():
     db.create_all()  
 

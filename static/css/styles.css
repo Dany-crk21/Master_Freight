@@ -6,6 +6,7 @@ body {
 	min-height: 100vh;
 	background-attachment: fixed;
 	color: rgb(239, 177, 7);
+	padding: 0;
 	margin: 0;
 }
 
@@ -86,4 +87,12 @@ h3{
 }
 li{
 	color: black;
+}
+
+/*estilos del mapa*/
+#map {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	position: absolute;
 }
