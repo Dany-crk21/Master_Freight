@@ -15,5 +15,30 @@
         <img src="https://cdn-icon-png.flaticon.com/512/847/847969.png" alt="usuario">
         <span class="user-name">matias vargas</span>
     </div>
+    <div class="contenedor">
+        <h2 style="color: black;">Formulario de Envío</h2>
+        <form action="#" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="fecha">Fecha de envío:</label>
+            <input type="fecha" id="fecha" name="fecha" required>
+            <label for="estado">Estado:</label>
+            <select name="estado" id="estado" required>
+                <option value="">Seleccione un Estado</option>
+                <option value="pendiente">pendiente</option>
+                <option value="en_proceso">En proceso</option>
+                <option value="en_camino">En camino</option>
+                <option value="entregado">Entregado</option>
+                <option value="cancelado">Cancelado</option>
+            </select>
+            <label for="origen">Origen:</label>
+            <input type="text" id="origen" name="origen" required>
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" name="destino" required>
+            <label for="detalles">Detalles del envío</label>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
 </body>
 </html>
