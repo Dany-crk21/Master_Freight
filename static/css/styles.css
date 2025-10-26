@@ -89,6 +89,33 @@ li{
 	color: black;
 }
 
+/*contenedor del usuario*/
+
+.contenedor {
+	position: absolute;
+	top: 200px; /*arriba y abajo*/
+	left: 100px; /*izquierda y derecha*/
+	background: rgb(224, 176, 5);
+	padding: 30px 40px;
+	border-radius: 15px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+	width: 400px;
+	text-align: center;
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	text-align: left;
+}
+
+label{
+	margin-bottom: 5px;
+	color: black;
+	font-weight: bold;
+}
+
 /*estilos del mapa*/
 #map {
 	height: 100%;

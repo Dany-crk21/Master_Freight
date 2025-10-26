@@ -6,3 +6,9 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 /* https://maps.wikimedia.org/osm-intl/{{z}/{x}/{y}.png */
+
+// Intentar centrar en la ubicación del usuario
+map.locate({ setView: True, maxZoom: 16 });
+map.on('locationfound', (e) => {
+    L.marker(e.Latlng).addTo(map).bindPopup('Estas aca').openPopup();
+});
