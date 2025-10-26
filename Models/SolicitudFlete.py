@@ -15,8 +15,8 @@ class SolicitudFlete(db.Model):
     cliente_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=False)
     fletero_id = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=True)
 
-    cliente = db.relationship('User', foreign_keys=[cliente_id], back_ref='solicitudes_cliente')
-    fletero = db.relationship('User', foreign_keys=[fletero_id], back_ref='solicitudes_fletero')
+    cliente = db.relationship('User', foreign_keys=[cliente_id], back_populates='solicitudes_cliente')
+    fletero = db.relationship('User', foreign_keys=[fletero_id], back_populates='solicitudes_fletero')
     
     def to_dict(self):
         return{
