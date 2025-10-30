@@ -1,26 +1,74 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
 
-// register.js
-document.getElementById('registerForm').addEventListener('submit', async(e) =>{
-    e.preventDefault();
+    loginForm.addEventListener('submit', async(e) => {
+        e.preventDefault();
+
+        const data = {
+            email: e.target.email.value,
+            password: e.target.password.value
+        };
+
+        try {
+            const res = await fetch('/login', { 
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        });
+
+            const result = await res.json();
+
+            if (res.ok) {
+                localStorage.setItem('token', result.token);
+                localStorage.setItem('role', result.role);
+                localStorage.setItem('user', result.username);
+                window.location.href = '/dashboard';
+            } else {
+                    alert(result.message);
+            }
+        } catch (err) {
+            console.error('Error en login:', err);
+            alert('Error al conectar con el servidor');
+        }
+    });
+
+    const registerForm = document.getElementById('registerForm');
     
-    const role = document.getElementById('role').value;
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    const endpoint = role === 'cliente' ? '/register/cliente' : '/register/fletero';
+        const role = e.target.role.value;
+        const data = {
+            username: e.target.username.value,
+            email: e.target.email.value,
+            password: e.target.password.value
+        };
 
-    const response = await fetch(endpoint, {
-        method: 'Post',
-        headers:{'Content-Type': 'application/json'},
-        body: JSON.stringify({username, email, password})
-    })
+        // Definir endpoint según el rol.
+        const endpoint = `/register/${role} `
+               
+        try {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
 
-    const result = await response.json();
-    const messageDiv = document.getElementById('message');
-    if(response.status === 201){
-        messageDiv.innerHTML = '<span class="text-success">${result.message}</span>';
-    } else { 
-        messageDiv.innerHTML = '<span class="text-danger">${result.message}</span>';
-    }
+            const result = await res.json();
+
+            if (res.ok) {
+                alert(result.message);
+                window.location.href = '/login';
+            } else {
+                alert(result.message);
+            }
+        } catch (err) {
+            console.error('Error en registro:', err);
+            alert('Error al conectar con el servidor');
+        }
+    });
 });
+    
+
+    
+        
