@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 auth_bp = Blueprint('auth',__name__)
 
-@auth_bp.route('/register/cliente', methods=['POST'])
+@auth_bp.route('/register/cliente', methods=['GET','POST'])
 def register_cliente():
     return register_with_role('cliente')
 
@@ -35,7 +35,7 @@ def register_with_role(role):
     db.session.commit()
     return jsonify({'message':f'{role} created successfully'}),201
 
-@auth_bp.route('/login', methods=['POST'])
+@auth_bp.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
