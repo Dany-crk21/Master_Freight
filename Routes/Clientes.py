@@ -9,6 +9,10 @@ Clientes_bp = Blueprint('clientes', __name__)
 @token_required(role='cliente')
 def solicitar_flete(current_user):
     data = request.get_json()
+    
+    required_fields = ['origen', 'destino', 'detalle']
+    if not data or not all(field in data for field in required_fields):
+        return jsonify({'error': 'faltan campos requeridos'}), 400
     nueva_solicitud = SolicitudFlete(
         origen=data['origen'],
         destino=data['destino'],
@@ -23,10 +27,14 @@ def solicitar_flete(current_user):
 @Clientes_bp.route('/cliente/solicitudes', methods=['GET'])
 @token_required(role='cliente')
 def ver_solicitudes(current_user):
-    solicitudes = SolicitudFlete.query.filter_by(cliente_id=current_user.id).all()
+    solicitudes = SolicitudFlete.query.filter_by(cliente_id=current_user.id)\
+        .order_by (SolicitudFlete.fecha.des()).all()
+        
+    if not solicitudes:
+            return jsonify({'message':'No tienes solicitudes registradas'}), 200
     result = [{
         'id': s.id,
-        'fecha': s.fecha,
+        'fecha': s.fecha if s.fecha else None,
         'estado': s.estado,
         'origen': s.origen,
         'destino': s.destino,
