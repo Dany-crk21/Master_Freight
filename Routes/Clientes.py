@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 from Models.SolicitudFlete import SolicitudFlete
-from Models.Users_models import User
 from Models.db import db
 from Utils.security import token_required
 Clientes_bp = Blueprint('clientes', __name__)

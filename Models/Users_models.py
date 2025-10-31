@@ -19,7 +19,7 @@ class User(db.Model):
                     back_populates='cliente'
                     )
     
-    solicitudes_fletero = db.relationship('Solicitudflete',
+    solicitudes_fletero = db.relationship('SolicitudFlete',
                     foreign_keys='SolicitudFlete.fletero_id',
                     back_populates='fletero'
                     )
