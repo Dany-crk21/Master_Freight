@@ -11,6 +11,9 @@ Fleteros_bp = Blueprint('fleteros', __name__)
 @token_required(role='fletero')
 def ver_solicitudes(current_user):
     solicitudes = SolicitudFlete.query.filter_by(estado='pendiente',fletero_id=None).all()
+    
+    if not solicitudes:
+        return jsonify({'message':'No hay solicitudes disponibles'}), 200
     result = [{
         'id': s.id,
         'fecha': s.fecha.isoformat(),
