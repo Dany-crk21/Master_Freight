@@ -20,10 +20,13 @@ app.register_blueprint(Clientes_bp)
 app.register_blueprint(Fleteros_bp)
 
 
-@app.route('/')
-def home():
-    # return redirect(url_for('auth.login'))
-    return render_template('mapa.html')
+@app.route('/login')
+def login_page():
+     return render_template('auth.login')
+@app.route('/register')
+def register_page():
+        return render_template('auth.register')
+    
 
 with app.app_context():
     db.create_all()  

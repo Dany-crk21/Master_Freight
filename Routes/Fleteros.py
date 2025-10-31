@@ -7,10 +7,13 @@ from Routes.Users import token_required
 Fleteros_bp = Blueprint('fleteros', __name__)
 
 # Ver solicitudes asignadas al fletero
-@Fleteros_bp.route('/fletero/<int:fletero_id>/solicitudes', methods=['GET'])
+@Fleteros_bp.route('/fletero/solicitudes', methods=['GET'])
 @token_required(role='fletero')
 def ver_solicitudes(current_user):
-    solicitudes = SolicitudFlete.query.filter_by(estado='pendiente').all()
+    solicitudes = SolicitudFlete.query.filter_by(estado='pendiente',fletero_id=None).all()
+    
+    if not solicitudes:
+        return jsonify({'message':'No hay solicitudes disponibles'}), 200
     result = [{
         'id': s.id,
         'fecha': s.fecha.isoformat(),

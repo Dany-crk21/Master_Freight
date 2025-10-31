@@ -1,14 +1,22 @@
 from flask import Blueprint, request, jsonify, render_template
 from Models.Users_models import User
 from Models.db import db
+<<<<<<< HEAD
 from Utils.security import make_password_hash, check_password, token_required
+=======
+from Utils.security import make_password_hash, check_password,token_required
+>>>>>>> 99a96ac9975686b435f7b7b228387f7adc72f611
 import jwt
 from flask import current_app as app
 from datetime import datetime, timedelta
 
 auth_bp = Blueprint('auth',__name__)
 
+<<<<<<< HEAD
 @auth_bp.route('/register/cliente', methods=['POST'])
+=======
+@auth_bp.route('/register/cliente', methods=['GET','POST'])
+>>>>>>> 99a96ac9975686b435f7b7b228387f7adc72f611
 def register_cliente():
     return register_with_role('cliente')
 
@@ -32,7 +40,7 @@ def register_with_role(role):
     ) 
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({'message':'User created successfully'}),201
+    return jsonify({'message':f'{role} created successfully'}),201
 
 @auth_bp.route('/login', methods=['GET','POST'])
 def login():
@@ -60,7 +68,12 @@ def login():
 @auth_bp.route("/dashboard", methods=["GET"])
 @token_required()
 def dashboard_page(current_user):
-    return render_template("cliente_dashboard.html")
+    if current_user.role == 'cliente':
+        return render_template("cliente_dashboard.html")
+    elif current_user.role == 'fletero':
+        return render_template("fletero_dasboard.html")
+    else:
+        return "adimin_dasboard.html"
 
 @auth_bp.route("/api/dashboard", methods=["GET"])
 @token_required()

@@ -2,7 +2,7 @@ from Models.db import db
 from datetime import datetime
 
 class SolicitudFlete(db.Model):
-    __tablename__='solicitudFletes'
+    __tablename__='solicitud_Fletes'
     
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
