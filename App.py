@@ -22,11 +22,11 @@ app.register_blueprint(Fleteros_bp)
 
 @app.route('/login')
 def login_page():
-     return render_template('auth.login')
+     return render_template('/auth/login.html')
 @app.route('/register')
 def register_page():
-        return render_template('auth.register')
-    
+        return render_template('/auth/register.html')
+        
 
 with app.app_context():
     db.create_all()  

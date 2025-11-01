@@ -1,22 +1,14 @@
 from flask import Blueprint, request, jsonify, render_template
 from Models.Users_models import User
 from Models.db import db
-<<<<<<< HEAD
-from Utils.security import make_password_hash, check_password, token_required
-=======
 from Utils.security import make_password_hash, check_password,token_required
->>>>>>> 99a96ac9975686b435f7b7b228387f7adc72f611
 import jwt
 from flask import current_app as app
 from datetime import datetime, timedelta
 
 auth_bp = Blueprint('auth',__name__)
 
-<<<<<<< HEAD
-@auth_bp.route('/register/cliente', methods=['POST'])
-=======
 @auth_bp.route('/register/cliente', methods=['GET','POST'])
->>>>>>> 99a96ac9975686b435f7b7b228387f7adc72f611
 def register_cliente():
     return register_with_role('cliente')
 
@@ -42,10 +34,10 @@ def register_with_role(role):
     db.session.commit()
     return jsonify({'message':f'{role} created successfully'}),201
 
-@auth_bp.route('/login', methods=['GET','POST'])
+@auth_bp.route('login', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('/auth/login.html')
     data = request.get_json()
     user = User.query.filter_by(email=data["email"]).first()
     if not user or not check_password(data["password"], user.password, user.salt):
