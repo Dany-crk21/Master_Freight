@@ -56,7 +56,7 @@ source <nombre_del_entorno>/bin/activate
 ```
 **Windows:**
 ```bash
-<nombre_del_entorno>\Scripts\activate
+.\<nombre_del_entorno>\Scripts\Activate.ps1
 ```
 
 ### 3. Instalar dependencias:
@@ -77,8 +77,9 @@ MYSQL_DATABASE=<nombre_de_la_base_de_datos>
 ## 🚀 Instalación y ejecución
 
 ### 1. Clona el repositorio: 
+```bash
 git clone <url_del_repositorio>
-
+```
 ### 2. Accede al directorio del proyecto:
 ```bash
 cd <nombre_del_proyecto>
@@ -90,4 +91,20 @@ pip install -r requirements.txt
 ### 4. Ejecuta la aplicacion:
 ```bash
 python app.py
+```
+
+## Migraciones
+
+### 1. Instalar Flask Migrate
+```bash
+pip install Flask Migrate
+```
+```bash
+flask db init
+```
+```bash
+flask db migrate -m 'init'
+```
+```bash
+flask db upgrade
 ```
