@@ -1,0 +1,147 @@
+body {
+	background-image: url("/static/imagen/fondo.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	min-height: 100vh;
+	background-attachment: fixed;
+	color: rgb(239, 177, 7);
+	padding: 0;
+	margin: 0;
+}
+
+/* Estilos para la tarjeta (el contenedor principal del login) */
+.card {
+    /* Sombra sutil para darle profundidad */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Borde redondeado */
+    border-radius: 10px;
+    /* Aseguramos que el fondo de la tarjeta sea blanco */
+    background-color: #fff; 
+}
+
+/* Estilos para la imagen del logo dentro del formulario */
+.logo-login {
+    /* Centrar la imagen */
+    display: block;
+    margin: 0 auto 20px auto; /* Espacio debajo del logo */
+    /* Tamaño de la imagen (ajustar según tu imagen) */
+    width: 200px; 
+    height: auto;
+}
+
+/* Estilo para el enlace de registro (opcional) */
+/* La clase text-center y mt-2 ya están aplicadas con Bootstrap */
+.mt-2 a {
+    color: #007bff; /* Color azul primario de Bootstrap para el enlace */
+    text-decoration: none; /* Quitar el subrayado por defecto */
+}
+
+.mt-2 a:hover {
+    text-decoration: underline; /* Subrayar al pasar el ratón */
+}
+
+/*----------------------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------------------- */
+/* Estilos para la tarjeta (Contenedor del formulario) */
+/* ---------------------------------------------------- */
+.card {
+    /* Sombra sutil para darle un efecto "flotante" */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    /* Bordes ligeramente redondeados */
+    border-radius: 12px;
+    /* Aseguramos que el fondo de la tarjeta sea blanco */
+    background-color: #fff;
+    /* Evitar que se vea el borde por defecto de Bootstrap */
+    border: none;
+    /* Relleno interno (ya manejado por p-4) */
+}
+
+/* ---------------------------------------------------- */
+/* Estilos para los campos del formulario */
+/* ---------------------------------------------------- */
+/* Enfocar los campos de entrada */
+.form-control:focus, .form-select:focus {
+    /* Color de borde al enfocar, usando el color de éxito de Bootstrap */
+    border-color: #28a745; 
+    /* Quitar la sombra interior (box-shadow) que pone Bootstrap por defecto */
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25); 
+}
+
+/* ---------------------------------------------------- */
+/* Estilos para el botón */
+/* ---------------------------------------------------- */
+.btn-success {
+    /* Un pequeño ajuste al estilo para hacerlo más atractivo (opcional) */
+    font-weight: bold;
+    /* Transición suave al pasar el ratón */
+    transition: background-color 0.2s ease;
+}
+
+.btn-success:hover {
+    /* Oscurecer un poco el botón al pasar el ratón */
+    background-color: #1e7e34; 
+    border-color: #1c7430;
+}
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------- */
+/* Estilos para la Barra de Navegación (NAV) */
+/* ------------------------------------------- */
+.navbar {
+    /* El color de fondo negro que se ve en la imagen */
+    background-color: #e926087e;
+    /* Asegura que ocupe todo el ancho */
+    width: 100%; 
+    /* Altura mínima de la barra para que los botones tengan espacio */
+    min-height: 50px; 
+    /* Centra los elementos de la lista horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra la lista de enlaces */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+/* ------------------------------------------- */
+/* Estilos para la Lista de Enlaces (UL) */
+/* ------------------------------------------- */
+.nav-links {
+	/*ponen los items en una fila*/
+	display: flex;
+    /* Quita las viñetas por defecto de la lista */
+    list-style: none;
+    /* Elimina los márgenes y rellenos por defecto */
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------------------------------- */
+/* Estilos para cada Ítem de la Lista (LI) */
+/* ------------------------------------------- */
+.nav-links li {
+    /* Un pequeño margen entre cada botón para separarlos */
+    margin: 0 15px;
+	padding: 5px 0;
+}
+
+/* ------------------------------------------- */
+/* Estilos para los Enlaces (A - los botones) */
+/* ------------------------------------------- */
+.nav-links li a {
+    /* Color de texto blanco, como en la imagen */
+    color: #9a1919;
+    /* Quita el subrayado por defecto de los enlaces */
+    text-decoration: none;
+    /* Convierte el texto a mayúsculas y aumenta el tamaño */
+    text-transform: uppercase;font-family: "Arial", sans-serif;
+    font-size: 15px;
+    font-weight: 700;/*Negrita*/
+	letter-spacing: 0.5px;/*espasio entre letras*/
+    /* Relleno para que la zona de clic sea más grande (como un botón) */
+    padding: 10px 0;
+}
+
+/* Estilo al pasar el ratón (Hover) */
+.nav-links li a:hover {
+    /* Cambia el color del texto a algo que contraste, como el rojo de los iconos */
+    color: #edcb0e; 
+	border-bottom: 2px solid #00008b;
+}
