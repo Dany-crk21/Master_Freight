@@ -12,14 +12,14 @@ body {
 
 
 /*logo de imagen*/
-
-.logo-empresa {
-  position: absolute;
-  top: -40px;
-  width: 200px;   /* ancho */
-  height: 200px;  /* mantiene proporción */
-  display: block;
-  margin: 10px auto; /* centra horizontalmente */
+.logo-login {
+	position: relative; /* absolute */
+  	box-shadow: 0 0 50px rgba(0,0,0,0.3);
+  	top: -100px;
+  	left: 100px;
+  	width: 100px;   /* ancho */
+  	display: block;
+  	z-index: 1;
 }
 
 h1{
@@ -27,8 +27,8 @@ h1{
 	margin-left: 160px;
 	margin-top: 60px;
 }
-/*modificacion del registro*/
 
+/*modificacion del registro*/
 .circle-bg{
 	position: absolute;
 	width: 250px;
@@ -55,12 +55,13 @@ h1{
 	right: 25px;
 	display: flex;
 	align-items: center;
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(0,0,0,0.2);
 	padding: 8px 12px;
 	border-radius: 25px;
-	transition: background-color 0.3s ease;
+	transition: 0.3s ease;
 }
-/*efecto al pasar al maus*/
+
+/* efecto al pasar el mouse */
 .user-info:hover{
 	background-color: rgba(255, 255, 255, 0.35);
 }
@@ -116,10 +117,67 @@ label{
 	font-weight: bold;
 }
 
-/*estilos del mapa*/
+/* estilos del mapa */
 #map {
 	height: 100%;
 	width: 100%;
 	top: 0;
 	position: absolute;
+}
+
+
+/* estilos del home */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: rgb(255, 0, 0);
+}
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.navbar-brand img {
+    height: 180px; /* Ajusta el tamaño del logo según sea necesario */
+    margin-right: 10px;
+}
+
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-links a:hover {
+    background-color: #ffc107; /* Color amarillo */
+    color: #333;
+}
+.button {
+    background-color: #ffc107; /* Color amarillo para el botón principal */
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #e0a800; /* Tono más oscuro al pasar el ratón */
 }
