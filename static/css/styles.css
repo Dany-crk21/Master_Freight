@@ -1,0 +1,116 @@
+body {
+	background-image: url("/static/imagen/fondo.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	min-height: 100vh;
+	background-attachment: fixed;
+	color: rgb(239, 177, 7);
+	padding: 0;
+	margin: 0;
+}
+
+
+
+/*lfuncion del login*/
+
+.logo-login{
+	position: relative;
+	box-shadow: 0 0 50px rgba(0,0,0,0.3);
+	top: -100px;
+	left: 100px;
+	width: 100px;
+	display: block;
+	z-index: 1;
+}
+
+
+/*modificacion del registro*/
+
+.circle-bg{
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+	background-color: rgb(255, 162, 0);
+	box-shadow: 0 0 30px rgba(0,0,0,0.3);
+	top: 20px; /*mueve hasia la abajo*/
+	left: 50px; /*mueve hasia la derecha*/
+	z-index: 0;
+}
+
+.logo-register{
+	position: relative;
+	top: -40px;
+	width: 300px;
+	color: rgb(227, 173, 12);
+}
+
+/*informacion de un usuario*/
+.user-info{
+	position: absolute;
+	top: 15px;
+	right: 25px;
+	display: flex;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.2);
+	padding: 8px 12px;
+	border-radius: 25px;
+	transition: background-color 0.3s ease;
+}
+
+/*style del home*/
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: rgb(255, 0, 0);
+}
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.navbar-brand img {
+    height: 180px; /* Ajusta el tamaño del logo según sea necesario */
+    margin-right: 10px;
+}
+
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-links a:hover {
+    background-color: #ffc107; /* Color amarillo */
+    color: #333;
+}.button {
+    background-color: #ffc107; /* Color amarillo para el botón principal */
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #e0a800; /* Tono más oscuro al pasar el ratón */
+}
