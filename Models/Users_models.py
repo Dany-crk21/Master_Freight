@@ -10,7 +10,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique = True, nullable = False)
     password = db.Column(db.String(64), nullable = False) # SHA -256 -> 64 hex chars
     salt = db.Column(db.String(32), nullable = False) # 16 bytes hex
-    role = db.Column(db.String(20), default = "cliente") # possible roles: user, admin
+    role = db.Column(db.String(20), default = "cliente") # possible roles: user, admin, fletero
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     solicitudes_cliente = db.relationship('SolicitudFlete',

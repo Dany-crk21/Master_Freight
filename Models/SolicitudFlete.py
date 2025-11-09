@@ -28,5 +28,5 @@ class SolicitudFlete(db.Model):
             'detalle': self.detalle,
             'cliente_id': self.cliente_id,
             'fletero_id': self.fletero_id
-            }
+        }
          
