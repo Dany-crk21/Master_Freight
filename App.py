@@ -12,6 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 migrate = Migrate(app,db)
+
 # Registro de Rutas
 app.register_blueprint(auth_bp)
 

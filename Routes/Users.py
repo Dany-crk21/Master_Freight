@@ -41,7 +41,7 @@ def register_with_role(role):
 @auth_bp.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'GET':
-        return render_template('/auth/login.html')
+        return render_template('auth/login.html')
     data = request.get_json()
     print(data)
     user = User.query.filter_by(email=data["email"]).first()
@@ -64,8 +64,13 @@ def login():
         'role': user.role,
         'username': user.username
     }), 200
-
     
+   # Ruta de Registro
+@auth_bp.route("/register", methods=["GET"])
+def show_register_page():
+    return render_template("auth/register.html")
+
+  
 # panel de usuario autenticado
 @auth_bp.route("/dashboard", methods=["GET"])
 @token_required()
