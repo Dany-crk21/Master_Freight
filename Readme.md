@@ -91,3 +91,18 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+## Migraciones
+
+### 1. Instalar Flask Migrate
+´´´bash
+pip install Flask Migrate
+´´´
+´´´bash
+flask db init
+´´´
+´´´bash
+flask db migrate -m 'init'
+´´´
+´´´bash
+flask db upgrade
+´´´
