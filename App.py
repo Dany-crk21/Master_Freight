@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app,db)
 # Registro de Rutas
 app.register_blueprint(auth_bp)
 
