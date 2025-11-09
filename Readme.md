@@ -96,15 +96,15 @@ python app.py
 ## Migraciones
 
 ### 1. Instalar Flask Migrate
-´´´bash
+```bash
 pip install Flask Migrate
-´´´
-´´´bash
+```
+```bash
 flask db init
-´´´
-´´´bash
+```
+```bash
 flask db migrate -m 'init'
-´´´
-´´´bash
+```
+```bash
 flask db upgrade
-´´´
+```
