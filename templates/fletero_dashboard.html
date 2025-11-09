@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Panel del Fletero{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+  <h2>Bienvenido, {{ user.nombre }}</h2>
+  <p>Gestioná tus solicitudes, viajes y perfil de fletero.</p>
+
+  <div class="panel">
+    <div class="card">
+      <h3> Solicitudes Pendientes</h3>
+      <p>Ver los pedidos disponibles para aceptar.</p>
+      <a href="{{ url_for('ver_solicitudes') }}">Ver Solicitudes</a>
+    </div>
+
+    <div class="card">
+      <h3> Mis Viajes</h3>
+      <p>Revisá los viajes activos o completados.</p>
+      <a href="{{ url_for('ver_viajes') }}">Ver Viajes</a>
+    </div>
+
+    <div class="card">
+      <h3>👤 Perfil</h3>
+      <p>Actualizá tus datos de contacto y vehículo.</p>
+      <a href="{{ url_for('editar_perfil') }}">Editar Perfil</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
