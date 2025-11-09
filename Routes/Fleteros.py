@@ -3,7 +3,6 @@ from Models.SolicitudFlete import SolicitudFlete
 from Models.db import db
 from Routes.Users import token_required
 
-
 Fleteros_bp = Blueprint('fleteros', __name__)
 
 # Ver solicitudes asignadas al fletero
@@ -22,7 +21,7 @@ def ver_solicitudes(current_user):
         'destino': s.destino,
         'detalle': s.detalle,
         'fecha': s.fecha,
-    }for s in solicitudes]
+    } for s in solicitudes]
     return jsonify(result), 200
 
 # Aceptar o Rechazar solicitud

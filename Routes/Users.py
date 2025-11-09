@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/register/user', methods=['POST'])
+@auth_bp.route('/register/cliente', methods=['POST'])
 def register_cliente():
     return register_with_role('cliente')
 
@@ -66,25 +66,22 @@ def login():
     }), 200
 
     
-# panel de usuario autenticado
 @auth_bp.route("/dashboard", methods=["GET"])
-@token_required()
-def dashboard_page(current_user):
-    if current_user.role == 'cliente':
-        return render_template("cliente_dashboard.html")
-    elif current_user.role == 'fletero':
-        return render_template("fletero_dashboard.html")
-    else:
-        return "admin_dashboard.html"
+def dashboard_page():
+   role = request.args.get('role')
+   return render_template('dashboard.html') 
+
 
 @auth_bp.route("/api/dashboard", methods=["GET"])
 @token_required()
 def dashboard_api(current_user):
     return jsonify({
-        "username": current_user.username,
+        'id': current_user.id,
+        'username': current_user.username,
         'role': current_user.role
     })
 
+# panel de usuario autenticado
 @auth_bp.route("/api/users", methods=["GET"])
 @token_required(role='admin') # solo admin puede acceder
 def list_users(current_user):

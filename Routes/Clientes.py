@@ -33,12 +33,15 @@ def ver_solicitudes(current_user):
         
     if not solicitudes:
             return jsonify({'message':'No tienes solicitudes registradas'}), 200
+    
     result = [{
         'id': s.id,
         'fecha': s.fecha if s.fecha else None,
         'estado': s.estado,
         'origen': s.origen,
         'destino': s.destino,
-        'detalle': s.detalle,    }for s in solicitudes]
+        'detalle': s.detalle,    
+    } for s in solicitudes]
+
     return jsonify(result), 200
                    
