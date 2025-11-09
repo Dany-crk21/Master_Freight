@@ -1,4 +1,3 @@
-
 import uuid
 from Models.db import db
 from datetime import datetime
@@ -13,6 +12,16 @@ class User(db.Model):
     salt = db.Column(db.String(32), nullable = False) # 16 bytes hex
     role = db.Column(db.String(20), default = "cliente") # possible roles: user, admin
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    solicitudes_cliente = db.relationship('SolicitudFlete',
+                    foreign_keys='SolicitudFlete.cliente_id', 
+                    back_populates='cliente'
+                    )
+    
+    solicitudes_fletero = db.relationship('SolicitudFlete',
+                    foreign_keys='SolicitudFlete.fletero_id',
+                    back_populates='fletero'
+                    )
     
     def to_dict(self):
         return{
