@@ -76,9 +76,10 @@ MYSQL_DATABASE=<nombre_de_la_base_de_datos>
 
 ## 🚀 Instalación y ejecución
 
-### 1. Clona el repositorio: 
+### 1. Clona el repositorio:
+```bash
 git clone <url_del_repositorio>
-
+```
 ### 2. Accede al directorio del proyecto:
 ```bash
 cd <nombre_del_proyecto>
@@ -94,15 +95,15 @@ python app.py
 ## Migraciones
 
 ### 1. Instalar Flask Migrate
-´´´bash
+```bash
 pip install Flask Migrate
-´´´
-´´´bash
+```
+```bash
 flask db init
-´´´
-´´´bash
+```
+```bash
 flask db migrate -m 'init'
-´´´
-´´´bash
+```
+```bash
 flask db upgrade
-´´´
+```
