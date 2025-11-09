@@ -6,8 +6,11 @@ body {
 	min-height: 100vh;
 	background-attachment: fixed;
 	color: rgb(239, 177, 7);
-	padding: 0;
+	padding: 90px 20px 0;
 	margin: 0;
+}
+body{
+	font-family: sans-serif;
 }
 
 /* Estilos para la tarjeta (el contenedor principal del login) */
@@ -84,64 +87,45 @@ body {
     border-color: #1c7430;
 }
 /*--------------------------------------------------------------------------------------------------------------------------*/
-/* ------------------------------------------- */
-/* Estilos para la Barra de Navegación (NAV) */
-/* ------------------------------------------- */
-.navbar {
-    /* El color de fondo negro que se ve en la imagen */
-    background-color: #e926087e;
-    /* Asegura que ocupe todo el ancho */
-    width: 100%; 
-    /* Altura mínima de la barra para que los botones tengan espacio */
-    min-height: 50px; 
-    /* Centra los elementos de la lista horizontalmente */
-    display: flex;
-    justify-content: center; /* Centra la lista de enlaces */
-    align-items: center; /* Centra verticalmente el contenido */
-}
 
-/* ------------------------------------------- */
-/* Estilos para la Lista de Enlaces (UL) */
-/* ------------------------------------------- */
-.nav-links {
-	/*ponen los items en una fila*/
+.header{
+	background-color: #3689d1;
+	height: 90px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+.nav{
 	display: flex;
-    /* Quita las viñetas por defecto de la lista */
-    list-style: none;
-    /* Elimina los márgenes y rellenos por defecto */
-    margin: 0;
-    padding: 0;
+	justify-content: space-between;
+	max-width: 992px;
+	margin: 0 auto;
 }
-
-/* ------------------------------------------- */
-/* Estilos para cada Ítem de la Lista (LI) */
-/* ------------------------------------------- */
-.nav-links li {
-    /* Un pequeño margen entre cada botón para separarlos */
-    margin: 0 15px;
-	padding: 5px 0;
+.nav-link{
+	color: rgb(255, 255, 255);
+	text-decoration: none;
 }
-
-/* ------------------------------------------- */
-/* Estilos para los Enlaces (A - los botones) */
-/* ------------------------------------------- */
-.nav-links li a {
-    /* Color de texto blanco, como en la imagen */
-    color: #9a1919;
-    /* Quita el subrayado por defecto de los enlaces */
-    text-decoration: none;
-    /* Convierte el texto a mayúsculas y aumenta el tamaño */
-    text-transform: uppercase;font-family: "Arial", sans-serif;
-    font-size: 15px;
-    font-weight: 700;/*Negrita*/
-	letter-spacing: 0.5px;/*espasio entre letras*/
-    /* Relleno para que la zona de clic sea más grande (como un botón) */
-    padding: 10px 0;
+.Logo{
+	width: 100px;
+	height: 80px;
 }
-
-/* Estilo al pasar el ratón (Hover) */
-.nav-links li a:hover {
-    /* Cambia el color del texto a algo que contraste, como el rojo de los iconos */
-    color: #edcb0e; 
-	border-bottom: 2px solid #00008b;
+.nav-menu{
+	display: flex;
+	margin-right: 40px;
+	list-style: none;
+}
+.nav-menu-item{
+	font-size: 18px;
+	margin: 0 10px;
+	line-height: 80px;
+	text-transform: uppercase;
+	width: max-content;
+}
+.nav-menu-link{
+	padding: 8px 12px;
+	border-radius: 5px;
+}
+.nav-menu-link:hover{
+	background-color: #cd881169;
 }
