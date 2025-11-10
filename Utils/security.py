@@ -28,8 +28,13 @@ def token_required(role=None):
                     return jsonify({"message":"Token is missing!"}), 401
                 try:
                     token = token.split()[1] # Bearer <token>
+                    # data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
                     data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-                    current_user = User.query.get(data['id'])
+                    # current_user = User.query.get(data['id'])
+
+                    user_id = data.get('id')
+                    current_user = User.query.filter_by(id=user_id).first()
+                    
                     if not current_user:
                         return jsonify({"message":"User not found"}), 404
                     if role and current_user.role != role:

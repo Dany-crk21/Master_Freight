@@ -1,20 +1,23 @@
-document.addEventListener('DOMContentLoaded', async (e) => {
+document.addEventListener('DOMContentLoaded', async () => {
     const role = localStorage.getItem('role');
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('token');
+    const content = document.getElementById('content');
 
     if (!role || !token) {
         window.location.href = '/login';
         return;
     }
 
-    const navbar = document.getElementById('navbar');
+    document.getElementById('username').textContent = username;
+    /* const navbar = document.getElementById('navbar');
     const content = document.getElementById('content');
 
     navbar.innerHTML = `
     <h2>Bienvenido, ${username}</h2>
     <button id='logoutBtn'>Cerrar sesión</button>
     `;
+    */
 
     document.getElementById('logoutBtn').addEventListener('click', () => {
         localStorage.clear();
@@ -41,9 +44,9 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         console.log('Datos validos:', data);
 
         // Cargar dashboard según el rol.
-        if (role === 'admin') {
+        if (data.role === 'admin') {
             import('/static/js/admin.js').then(module => module.renderAdminDashboard(content));
-        } else if (role === 'fletero') {
+        } else if (data.role === 'fletero') {
             import('/static/js/fletero.js').then(module => module.renderFleteroDashboard(content));
         }
         else {
