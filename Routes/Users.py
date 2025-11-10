@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/register/user', methods=['POST'])
+@auth_bp.route('/register/cliente', methods=['POST'])
 def register_cliente():
     return register_with_role('cliente')
 

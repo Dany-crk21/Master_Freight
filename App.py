@@ -16,12 +16,14 @@ migrate = Migrate(app,db)
 # Registro de Rutas
 app.register_blueprint(auth_bp)
 
-@app.route('/register')
-def register_page():
-        return render_template('/auth/register.html')
+@app.route('/')
+def index():
+        return render_template('auth/register.html')
+
+@app.route('/home')
+def home():
+        return render_template('home.html')
         
-with app.app_context():
-    db.create_all()  
 
 if __name__ == "__main__":
     app.run(debug=True)
