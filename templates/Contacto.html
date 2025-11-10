@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Máster Freight</title>
+    <link rel="icon" href="logo.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #222;
+        }
+
+        header {
+            background-color: #0a2a91;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.4em;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #111;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #111;
+            outline: none;
+        }
+
+        button {
+            background-color: #111;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .info-contacto {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .datos {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .datos h3 {
+            color: #0a2a91;
+        }
+
+        .mapa {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 60px;
+            color: #fff;
+            background-color: #0a0a0a;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Máster Freight
+    </header>
+
+    <div class="container">
+        <h2>Contáctanos</h2>
+
+        <form id="contactForm">
+            <input type="text" id="nombre" placeholder="Tu nombre" required>
+            <input type="email" id="correo" placeholder="Tu correo electrónico" required>
+            <input type="text" id="asunto" placeholder="Asunto" required>
+            <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            <button type="submit">Enviar mensaje</button>
+        </form>
+
+        <div class="info-contacto">
+            <div class="datos">
+                <h3>Datos de contacto</h3>
+                <p><strong>Dirección:</strong> Av. Libertad 205 Lavalle Mendoza</p>
+                <p><strong>Teléfono:</strong> <a href="tel:+54261493185">(261) 6149-3185</a></p>
+                <p><strong>Email:</strong> <a href="mailto:master@freight.com.ar">master@freight.com.ar</a></p>
+                <p><strong>Horario:</strong> Atención las 24 hs (con reserva previa)</p>
+            </div>
+
+            <div class="mapa">
+                <h3>Nuestra ubicación</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.5040275048444!2d-58.41324942336812!3d-34.642267172941385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb25d4957ad3%3A0xd3b6da87a33aef7a!2sAv.%20Independencia%203065%2C%20C1225AAE%20CABA!5e0!3m2!1ses!2sar
