@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Flete</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Menú superior -->
+    <header class="header">
+        <nav class="nav">
+            <img src="/static/imagen/titulo_marca.png" alt="logo" class="Logo">
+          <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <a href="home.html" class="nav-menu-link nav-link">Home</a></li>
+            <li class="nav-menu-item">
+                <a href="nosotro.html" class="nav-menu-link nav-link">nosotros</a></li>
+            <li class="nav-menu-item">
+                <a href="#servisio" class="nav-menu-link nav-link">servicios</a></li>
+            <li class="nav-menu-item">
+                <a href="#contacto" class="nav-menu-link nav-link">contacto</a></li>
+            <li class="nav-menu-item" >
+                <a href="Reserva.html"class="nav-menu-link nav-link">reserva de flete</a></li>
+          </ul>
+        </nav>
+
+    </header>
+
+    <section class="form-register">
+        <h4>Reservacion</h4>
+        <input class="ingreso" type="text" name="nombre" id="nombre" placeholder="Nombre">
+        <input class="ingreso" type="tel" name="telefono" id="telefono" placeholder="Telefono">
+        <input class="ingreso" type="email" name="correo" id="correo" placeholder="Correo electronico">
+        <input class="ingreso" type="text" name="desde" id="desde" placeholder="Desde">
+        <input class="ingreso" type="text" name="hasta" id="hasta" placeholder="Hasta">
+        
+        <label>tipo de mudansa</label>
+        <div class="checkbox-group">
+            <label class="opcion-mudanza"><input type="checkbox" name="tipoMudanza" value="Casa">Casa</label>
+            <label class="opcion-mudanza"><input type="checkbox" name="tipoMudanza" value="Oficina">Oficina</label>
+            <label class="opcion-mudanza"><input type="checkbox" name="tipoMudanza" value="Departamento">Departamento</label>
+            <label class="opcion-mudanza"><input type="checkbox" name="tipoMudanza" value="SistemaIntegral">Sistema Integral</label>
+            <label class="opcion-mudanza"><input type="checkbox" name="tipoMudanza" value="Sistema americano">Sistema americano</label>
+        </div>
+        <input class="botons-reserva" type="submit" value="Enviar">
+    </section>
+</body>
+</html>

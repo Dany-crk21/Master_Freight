@@ -15,13 +15,17 @@ class User(db.Model):
     
     solicitudes_cliente = db.relationship('SolicitudFlete',
                     foreign_keys='SolicitudFlete.cliente_id', 
-                    back_populates='cliente'
+                    back_populates='cliente',
+                    lazy = True
                     )
     
     solicitudes_fletero = db.relationship('SolicitudFlete',
                     foreign_keys='SolicitudFlete.fletero_id',
-                    back_populates='fletero'
+                    back_populates='fletero',
+                    lazy = True
                     )
+    def __repr__(self):
+        return f'<User {self.username}>'
     
     def to_dict(self):
         return{
@@ -30,3 +34,4 @@ class User(db.Model):
             "email":self.email,
             "role":self.role
         }
+from Models.SolicitudFlete import SolicitudFlete

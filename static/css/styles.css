@@ -12,6 +12,16 @@ body {
 body{
 	font-family: sans-serif;
 }
+footer {
+	position: fixed;
+	bottom: 0;
+    text-align: center;
+    background-color: #003366;
+    padding: 8px;
+    font-size: 18px;
+    color: #ccc;
+	width: 100%;
+}
 
 /* Estilos para la tarjeta (el contenedor principal del login) */
 .card {
@@ -138,4 +148,74 @@ body{
 	top: 400px;
 	left: 900px;
 	width: 300px;
+}
+
+/*escructura de nosotros.html*/
+.titulo-sonotros{
+	color: #ffd700;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+.esplicacion-nosotros{
+	font-size: 18px;
+    line-height: 1.7;
+}
+.funciones-futura{
+    list-style: none;
+    padding: 0;
+}
+/*----------------------------------------------------------------------*/
+/*funcion de Reerva.html*/
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.form-register{
+	width: 400px;
+	background: #3689d1;
+	padding: 30px;
+	margin: auto;
+	margin-top: 100px;
+	border-radius: 10px;
+	font-family: "calibri";
+	color: rgb(0, 0, 0);
+	box-shadow: 7px 13px 37px #000;
+}
+.form-register h4{
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+.ingreso{
+	width: 100%;
+	background: #fbfbfb;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	border: 1px solid #ee7824;
+	font-family: "calibri";
+	font-size: 18px;
+}
+.form-register botons-reserva{
+	width: 100%;
+	background: #3689d1;
+	border: none;
+	padding: 12px;
+	color: white;
+	margin: 16px 0;
+	font-size: 16px;
+}
+
+.checkbox-group{
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-bottom: 20px;
+}
+.opcion-mudanza{
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	cursor: pointer;
+	color: white;
 }
