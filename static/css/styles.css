@@ -129,3 +129,13 @@ body{
 .nav-menu-link:hover{
 	background-color: #cd881169;
 }
+.logo-home{
+	top: 400px;
+	left: 1200px;
+	width: 300px;
+}
+.titulo-home{
+	top: 400px;
+	left: 900px;
+	width: 300px;
+}
