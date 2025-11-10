@@ -97,7 +97,7 @@ python app.py
 
 ### 1. Instalar Flask Migrate
 ```bash
-pip install Flask Migrate
+pip install Flask-Migrate
 ```
 ```bash
 flask db init
