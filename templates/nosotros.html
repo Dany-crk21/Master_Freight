@@ -4,52 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotros | Máster Freight</title>
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <style>
         /* Estilo general */
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #ff7a00, #ffb347);
-            color: #fff;
-        }
-
         /* Barra de navegación */
-        nav {
-            background-color: #0077cc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 25px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #ffd700;
-        }
-
-        /* Encabezado */
-        header {
-            text-align: center;
-            padding: 50px 20px 20px;
-        }
-
-        header h1 {
-            font-size: 38px;
-            margin: 0;
-            letter-spacing: 2px;
-            color: #003366;
-            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3);
-        }
-
         /* Secciones */
         section {
             background-color: rgba(0, 0, 0, 0.4);
@@ -59,55 +17,31 @@
             max-width: 900px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-
-        h2 {
-            color: #ffd700;
-            font-size: 26px;
-            margin-bottom: 15px;
-        }
-
-        p, ul {
-            font-size: 18px;
-            line-height: 1.7;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul li::before {
-            content: "✔️ ";
-            margin-right: 8px;
-        }
-
-        footer {
-            text-align: center;
-            background-color: #003366;
-            padding: 20px;
-            font-size: 15px;
-            color: #ccc;
-        }
     </style>
 </head>
 <body>
     <!-- Menú superior -->
-    <nav>
-        <a href="home.html">HOME</a>
-        <a href="nosotros.html">NOSOTROS</a>
-        <a href="servicios.html">SERVICIOS</a>
-        <a href="contacto.html">CONTACTO</a>
-        <a href="reserva.html">RESERVA DE FLETE</a>
-    </nav>
+    <header class="header">
+        <nav class="nav">
+            <img src="/static/imagen/titulo_marca.png" alt="logo" class="Logo">
+          <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <a href="home.html" class="nav-menu-link nav-link">Home</a></li>
+            <li class="nav-menu-item">
+                <a href="#nosotro" class="nav-menu-link nav-link">nosotro</a></li>
+            <li class="nav-menu-item">
+                <a href="#servisio" class="nav-menu-link nav-link">servicios</a></li>
+            <li class="nav-menu-item">
+                <a href="#contacto" class="nav-menu-link nav-link">contacto</a></li>
+            <li class="nav-menu-item" >
+                <a href="Reserva.html"class="nav-menu-link nav-link">reserva de flete</a></li>
+          </ul>
+        </nav>
 
-    <!-- Contenido principal -->
-    <header>
-        <h1>Sobre Máster Freight</h1>
     </header>
-
     <section>
-        <h2>Nuestra Aplicación</h2>
-        <p>
+        <h2 class="titulo-sonotros">Nuestra Aplicación</h2>
+        <p class="esplicacion-nosotros">
             Máster Freight es una app pensada para revolucionar la gestión de fletes y transporte.
             Conectamos empresas, transportistas y clientes de forma rápida, transparente y segura.
             Nuestro sistema permite reservar, monitorear y administrar envíos sin complicaciones.
@@ -115,8 +49,8 @@
     </section>
 
     <section>
-        <h2>Nuestra Función</h2>
-        <p>
+        <h2 class="titulo-sonotros">Nuestra Función</h2>
+        <p class="esplicacion-nosotros">
             Simplificamos el proceso logístico digitalizando la comunicación y reduciendo tiempos de espera.
             Ofrecemos una herramienta que facilita el trabajo tanto a empresas como a conductores,
             optimizando rutas, costos y disponibilidad en tiempo real.
@@ -124,8 +58,8 @@
     </section>
 
     <section>
-        <h2>Metas a Futuro</h2>
-        <p>
+        <h2 class="titulo-sonotros">Metas a Futuro</h2>
+        <p class="esplicacion-nosotros">
             Queremos expandir Máster Freight a nivel nacional e internacional.
             Planeamos implementar inteligencia artificial para calcular rutas óptimas, predecir la demanda
             y mejorar la experiencia de todos los usuarios del sistema.
@@ -133,9 +67,9 @@
     </section>
 
     <section>
-        <h2>Funciones Futuras</h2>
-        <p>Junto con los creadores de la app, estamos trabajando en nuevas herramientas como:</p>
-        <ul>
+        <h2 class="titulo-sonotros">Funciones Futuras</h2>
+        <p class="esplicacion-nosotros">Junto con los creadores de la app, estamos trabajando en nuevas herramientas como:</p>
+        <ul class="funciones-futura esplicacion-nosotros">
             <li>Chat en tiempo real entre transportista y cliente.</li>
             <li>Seguimiento GPS en vivo de cada envío.</li>
             <li>Historial de viajes y evaluaciones de servicio.</li>
