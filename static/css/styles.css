@@ -87,7 +87,7 @@ footer {
 .btn-success {
     /* Un pequeño ajuste al estilo para hacerlo más atractivo (opcional) */
     font-weight: bold;
-    /* Transición suave al pasar el ratón */
+    /* Transicion suave al pasar el ratón */
     transition: background-color 0.2s ease;
 }
 
@@ -150,22 +150,22 @@ footer {
 	width: 300px;
 }
 
-/*escructura de nosotros.html*/
-.titulo-sonotros{
+/*estructura de nosotros.html*/
+.titulo-nosotros{
 	color: #ffd700;
     font-size: 26px;
     margin-bottom: 15px;
 }
-.esplicacion-nosotros{
+.explicacion-nosotros{
 	font-size: 18px;
     line-height: 1.7;
 }
-.funciones-futura{
+.funciones-futuras{
     list-style: none;
     padding: 0;
 }
 /*----------------------------------------------------------------------*/
-/*funcion de Reerva.html*/
+/*funcion de Reserva.html*/
 *{
 	margin: 0;
 	padding: 0;
