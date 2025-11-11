@@ -29,7 +29,7 @@ def solicitar_flete(current_user):
 @token_required(role='cliente')
 def ver_solicitudes(current_user):
     solicitudes = SolicitudFlete.query.filter_by(cliente_id=current_user.id)\
-        .order_by (SolicitudFlete.fecha.des()).all()
+        .order_by (SolicitudFlete.fecha.desc()).all()
         
     if not solicitudes:
             return jsonify({'message':'No tienes solicitudes registradas'}), 200

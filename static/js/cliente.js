@@ -14,7 +14,7 @@ export function renderClienteDashboard(container) {
             </div>
             <div class="mb-3">
                 <label class="form-label">Detalle</label>
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" id="detalle" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-success w-100">Solicitar Flete</button>
         </form>
@@ -66,7 +66,7 @@ export function renderClienteDashboard(container) {
         }
         
         data.forEach(s => {
-            const item = createElement('div');
+            const item = document.createElement('div');
             item.className = 'list-group-item list-group-item-action';
             item.innerHTML = `
                 <strong>${s.origen}</strong> => ${s.destino}<br>
