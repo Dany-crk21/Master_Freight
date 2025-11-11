@@ -71,22 +71,18 @@ def show_register_page():
     return render_template("auth/register.html")
 
   
-# panel de usuario autenticado
+# Servir template de dashboard
 @auth_bp.route("/dashboard", methods=["GET"])
-@token_required()
-def dashboard_page(current_user):
-    if current_user.role == 'cliente':
-        return render_template("cliente_dashboard.html")
-    elif current_user.role == 'fletero':
-        return render_template("fletero_dashboard.html")
-    else:
-        return "admin_dashboard.html"
+def dashboard_page():
+    return render_template('dashboard.html')
 
+# Panel de usuario autenticado
 @auth_bp.route("/api/dashboard", methods=["GET"])
 @token_required()
 def dashboard_api(current_user):
     return jsonify({
-        "username": current_user.username,
+        'id': current_user.id,
+        'username': current_user.username,
         'role': current_user.role
     })
 
