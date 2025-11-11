@@ -30,6 +30,8 @@ footer {
 
 /* Estilos para la tarjeta (el contenedor principal del login) */
 .card {
+	position: absolute;
+	top: 30px;
     /* Sombra sutil para darle profundidad */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Borde redondeado */
@@ -63,16 +65,24 @@ footer {
 /* ---------------------------------------------------- */
 /* Estilos para la tarjeta (Contenedor del formulario) */
 /* ---------------------------------------------------- */
-.card {
+.card-2 {
     /* Sombra sutil para darle un efecto "flotante" */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     /* Bordes ligeramente redondeados */
     border-radius: 12px;
     /* Aseguramos que el fondo de la tarjeta sea blanco */
-    background-color: #fff;
+    background-color: #ffffff;
     /* Evitar que se vea el borde por defecto de Bootstrap */
     border: none;
     /* Relleno interno (ya manejado por p-4) */
+}
+
+.logo-register{
+	position: absolute;
+	width: 300px;
+	height: auto;
+	top: 5px;
+	left: 250px;
 }
 
 /* ---------------------------------------------------- */
@@ -113,7 +123,7 @@ footer {
 }
 
 .Logo{
-	height: 80px;
+	height: 75px;
 	width: auto;
 }
 
@@ -216,17 +226,12 @@ footer {
 
 
 /*----------------------------------------------------------------------*/
-<<<<<<< Updated upstream
 /*funcion de Reserva.html*/
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
-=======
-/*funcion de Reerva.html*/
-
->>>>>>> Stashed changes
 .form-register{
 	width: 400px;
 	background: #3689d1;

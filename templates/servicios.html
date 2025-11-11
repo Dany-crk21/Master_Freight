@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios | Máster Freight</title>
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    header {
+      background-color: #ff7b00; 
+      padding: 15px 0;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #000; 
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff; 
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #000; /* cambiado a negro */
+      margin-bottom: 30px;
+    }
+
+    .servicio {
+      margin-bottom: 25px;
+      padding: 20px;
+      border-left: 5px solid #ff7b00;
+      background-color: #fdfdfd;
+      border-radius: 8px;
+    }
+
+    .servicio h3 {
+      margin: 0 0 10px 0;
+      color: #000;
+    }
+
+    .servicio p {
+      color: #333;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 25px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+     <header class="header">
+        <nav class="nav">
+          <img src="/static/imagen/logo.png" alt="Logo" class="Logo">
+          <button class="toggle"><i class="fa-regular fa-bars"></i></button>
+          <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <a href="/home" class="nav-menu-link nav-link">Home</a></li>
+            <li class="nav-menu-item">
+                <a href="/nosotros" class="nav-menu-link nav-link">nosotros</a></li>
+            <li class="nav-menu-item">
+                <a href="/servisios" class="nav-menu-link nav-link">servicios</a></li>
+            <li class="nav-menu-item">
+                <a href="/contacto" class="nav-menu-link nav-link">contacto</a></li>
+            <li class="nav-menu-item" >
+                <a href="/reserva"class="nav-menu-link nav-link">reserva de flete</a></li>
+            <li><a href="#"><span class="bars"></span></a></li>
+          </ul>
+        </nav>
+    </header> 
+
+  <div class="container">
+    <h2>Nuestros Servicios</h2>
+
+    <div class="servicio">
+      <h3>Transporte Internacional</h3>
+      <p>Ofrecemos soluciones seguras y eficientes para el traslado de cargas a nivel global, con seguimiento en tiempo real.</p>
+    </div>
+
+    <div class="servicio">
+      <h3>Logística Nacional</h3>
+      <p>Coordinamos envíos dentro del país garantizando puntualidad y cuidado en cada entrega.</p>
+    </div>
+
+    <div class="servicio">
+      <h3>Almacenamiento y Distribución</h3>
+      <p>Contamos con depósitos modernos para almacenar y distribuir tu mercadería de manera organizada y segura.</p>
+    </div>
+
+    <div class="servicio">
+      <h3>Asesoramiento Aduanero</h3>
+      <p>Brindamos asistencia profesional en trámites y documentación aduanera, facilitando el comercio internacional.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Máster Freight | Todos los derechos reservados
+  </footer>
+</body>
+</html>
