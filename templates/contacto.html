@@ -5,27 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Máster Freight</title>
     <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <style>
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            color: #222;
-        }
-
-        header {
-            background-color: #0a2a91;
-            color: #fff;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 1.4em;
-            letter-spacing: 1px;
-        }
 
         .container {
             max-width: 1000px;
             margin: 50px auto;
-            background: #fff;
+            background: #838383;
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -36,7 +22,9 @@
             color: #111;
             margin-bottom: 30px;
         }
-
+        p{
+            color: black;
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -105,7 +93,7 @@
             text-align: center;
             padding: 15px;
             margin-top: 60px;
-            color: #fff;
+            color: #ffffff;
             background-color: #0a0a0a;
         }
 
@@ -118,8 +106,24 @@
     </style>
 </head>
 <body>
-    <header>
-        Máster Freight
+    <header class="header">
+        <nav class="nav">
+          <img src="/static/imagen/logo.png" alt="Logo" class="Logo">
+          <button class="toggle"><i class="fa-regular fa-bars"></i></button>
+          <ul class="nav-menu">
+            <li class="nav-menu-item">
+                <a href="home.html" class="nav-menu-link nav-link">Home</a></li>
+            <li class="nav-menu-item">
+                <a href="nosotros.html" class="nav-menu-link nav-link">nosotros</a></li>
+            <li class="nav-menu-item">
+                <a href="#servisio" class="nav-menu-link nav-link">servicios</a></li>
+            <li class="nav-menu-item">
+                <a href="Contacto.html" class="nav-menu-link nav-link">contacto</a></li>
+            <li class="nav-menu-item" >
+                <a href="Reserva.html"class="nav-menu-link nav-link">reserva de flete</a></li>
+            <li><a href="#"><span class="bars"></span></a></li>
+          </ul>
+        </nav>
     </header>
 
     <div class="container">
@@ -135,14 +139,21 @@
 
         <div class="info-contacto">
             <div class="datos">
-                <h3>Datos de contacto</h3>
+                <h3 style="color: black;">Datos de contacto</h3>
                 <p><strong>Dirección:</strong> Av. Libertad 205 Lavalle Mendoza</p>
                 <p><strong>Teléfono:</strong> <a href="tel:+54261493185">(261) 6149-3185</a></p>
                 <p><strong>Email:</strong> <a href="mailto:master@freight.com.ar">master@freight.com.ar</a></p>
                 <p><strong>Horario:</strong> Atención las 24 hs (con reserva previa)</p>
             </div>
+        </div>
+        <div class="mapa">
+            <h3 style="color: black; font-size: 2.5em;">Nuestra ubicación</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.5040275048444!2d-58.41324942336812!3d-34.642267172941385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb25d4957ad3%3A0xd3b6da87a33aef7a!2sAv.%20Independencia%203065%2C%20C1225AAE%20CABA!5e0!3m2!1ses!2sar"></iframe>
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 Máster Freight — Todos los derechos reservados.
+    </footer>   
+</body>
 
-            <div class="mapa">
-                <h3>Nuestra ubicación</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.5040275048444!2d-58.41324942336812!3d-34.642267172941385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb25d4957ad3%3A0xd3b6da87a33aef7a!2sAv.%20Independencia%203065%2C%20C1225AAE%20CABA!5e0!3m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>>
-            </div>
+          

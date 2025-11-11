@@ -6,15 +6,20 @@ body {
 	min-height: 100vh;
 	background-attachment: fixed;
 	color: rgb(239, 177, 7);
-	padding: 90px 20px 0;
+	padding: 70px 20px 0;
 	margin: 0;
 }
-body{
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 	font-family: sans-serif;
 }
+
 footer {
-	position: fixed;
-	bottom: 0;
+	position: absolute;
+	top: absolute;
     text-align: center;
     background-color: #003366;
     padding: 8px;
@@ -97,61 +102,105 @@ footer {
     border-color: #1c7430;
 }
 /*--------------------------------------------------------------------------------------------------------------------------*/
-
+/*configuracion del home.html*/
 .header{
-	background-color: #3689d1;
-	height: 90px;
+	background: #11196b;
+	height: 80px;
 	position: fixed;
 	width: 100%;
 	top: 0;
 	left: 0;
 }
+
+.Logo{
+	height: 80px;
+	width: auto;
+}
+
 .nav{
 	display: flex;
 	justify-content: space-between;
 	max-width: 992px;
-	margin: 0 auto;
+	margin: 0 100px;
 }
+
 .nav-link{
-	color: rgb(255, 255, 255);
+	color: white;
 	text-decoration: none;
 }
-.Logo{
-	width: 100px;
-	height: 80px;
-}
+
 .nav-menu{
 	display: flex;
 	margin-right: 40px;
 	list-style: none;
 }
+
 .nav-menu-item{
 	font-size: 18px;
 	margin: 0 10px;
 	line-height: 80px;
-	text-transform: uppercase;
+	text-transform: uperrcase;
 	width: max-content;
 }
 .nav-menu-link{
 	padding: 8px 12px;
 	border-radius: 5px;
-}
-.nav-menu-link:hover{
-	background-color: #cd881169;
-}
-.logo-home{
-	top: 400px;
-	left: 1200px;
-	width: 300px;
-}
-.titulo-home{
-	top: 400px;
-	left: 900px;
-	width: 300px;
+	transition: 0.5s;
 }
 
-/*estructura de nosotros.html*/
-.titulo-nosotros{
+.nav-menu-link:hover{
+	background-color: #202a99;
+}
+
+.nav .toggle{
+	color: white;
+	background: none;
+	border: none;
+	font-size: 80px;
+	padding: 0 50px;
+	line-height: 60px;
+	
+}
+
+
+.fondo-camion{
+	width: 1500px;
+	height: 500px;
+	display: block;
+}
+.contenedor-marca{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+.txt{
+	margin-right: 20px;
+}
+
+.titulo-marca{
+	width: 350px;
+	height: 250px;
+}
+
+.nombre-marca{
+	top: 10px;
+	left: 0;
+	width: 500px;
+	height: auto;
+}
+
+.atributos{
+	background-color: rgba(0, 0, 0, 0.4);
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 900px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+/*dispositivos moviles*/
+/*----------------------------------------------------------------------------------------------*/
+/*escructura de nosotros.html*/
+.titulo-sonotros{
 	color: #ffd700;
     font-size: 26px;
     margin-bottom: 15px;
@@ -164,13 +213,20 @@ footer {
     list-style: none;
     padding: 0;
 }
+
+
 /*----------------------------------------------------------------------*/
+<<<<<<< Updated upstream
 /*funcion de Reserva.html*/
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
+=======
+/*funcion de Reerva.html*/
+
+>>>>>>> Stashed changes
 .form-register{
 	width: 400px;
 	background: #3689d1;
@@ -218,4 +274,8 @@ footer {
 	font-size: 18px;
 	cursor: pointer;
 	color: white;
+}
+.opcion-mudanza input{
+	font-size: 20px;
+	margin-right: 8px;
 }
