@@ -3,6 +3,7 @@ from Config import config
 from Models.db import db
 from Routes.Users import auth_bp
 from flask_migrate import Migrate
+from Routes.Main import main_bp
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -15,6 +16,7 @@ migrate = Migrate(app,db)
 
 # Registro de Rutas
 app.register_blueprint(auth_bp)
+app.register_blueprint(main_bp)
 
 @app.route('/')
 def index():
