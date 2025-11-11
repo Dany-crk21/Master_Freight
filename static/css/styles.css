@@ -85,6 +85,13 @@ footer {
     /* Quitar la sombra interior (box-shadow) que pone Bootstrap por defecto */
     box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25); 
 }
+.register-logo{
+	position: absolute;
+	width: 270px;
+	height: auto;
+	top: 19px;
+	
+}
 
 /* ---------------------------------------------------- */
 /* Estilos para el botón */
@@ -197,7 +204,7 @@ footer {
     max-width: 900px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-/*dispositivos moviles*/
+
 /*----------------------------------------------------------------------------------------------*/
 /*escructura de nosotros.html*/
 .titulo-sonotros{
@@ -216,23 +223,14 @@ footer {
 
 
 /*----------------------------------------------------------------------*/
-<<<<<<< Updated upstream
-/*funcion de Reserva.html*/
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-=======
 /*funcion de Reerva.html*/
 
->>>>>>> Stashed changes
 .form-register{
-	width: 400px;
+	width: 900px;
 	background: #3689d1;
 	padding: 30px;
-	margin: auto;
-	margin-top: 100px;
+	margin: 50px;
+	margin-top: 50px;
 	border-radius: 10px;
 	font-family: "calibri";
 	color: rgb(0, 0, 0);
@@ -252,9 +250,9 @@ footer {
 	font-family: "calibri";
 	font-size: 18px;
 }
-.form-register botons-reserva{
+.form-register .botons-reserva{
 	width: 100%;
-	background: #3689d1;
+	background: #100973;
 	border: none;
 	padding: 12px;
 	color: white;
@@ -278,4 +276,30 @@ footer {
 .opcion-mudanza input{
 	font-size: 20px;
 	margin-right: 8px;
+}
+/*dashboard cliente configuracion*/
+.side-menu{
+	position: fixed;
+	background: rgb(21, 13, 156);
+	width: 20vW;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.side-menu .brand-name{
+	height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.side-menu li{
+	font-size: 24px;
+	padding: 10px 40px;
+	color: white;
+	display: flex;
+	align-items: center;
+}
+.side-menu li:hover{
+	background: white;
+	color: #000;
 }

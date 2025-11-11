@@ -1,29 +1,43 @@
-{% extends "base.html" %}
-{% block title %}Panel del Cliente{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cliente-Dashboard</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "poppins", sans-serif;
+    }
+    body{
+      min-height: 100vh;
+    }
 
-{% block content %}
-<section class="dashboard">
-  <h2>Bienvenido, {{ user.nombre }}</h2>
-  <p>Desde aquí podés gestionar tus pedidos y consultar su estado.</p>
-
-  <div class="panel">
-    <div class="card">
-      <h3>📦 Mis Envíos</h3>
-      <p>Ver el estado actual de tus envíos activos.</p>
-      <a href="{{ url_for('ver_envios') }}">Ver Envíos</a>
+    a{
+      text-decoration: none;
+    }
+    li{
+      list-style: none;
+    }
+    h1,h2{
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="side-menu">
+    <div class="brand-name">
+      <h1>cilente Dashboard</h2>
     </div>
-
-    <div class="card">
-      <h3>📝 Nuevo Pedido</h3>
-      <p>Solicitá un nuevo envío a un fletero disponible.</p>
-      <a href="{{ url_for('nuevo_pedido') }}">Crear Pedido</a>
-    </div>
-
-    <div class="card">
-      <h3>🕓 Historial</h3>
-      <p>Consultá todos tus pedidos anteriores.</p>
-      <a href="{{ url_for('historial_pedidos') }}">Ver Historial</a>
-    </div>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Usuarios</a></li>
+      <li><a href="#">Fecha Pedidos</a></li>
+      <li><a href="#"></a></li>
+    </ul>
   </div>
-</section>
-{% endblock %}
+</body>
+</html>
