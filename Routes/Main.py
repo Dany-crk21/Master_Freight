@@ -1,20 +1,20 @@
-from flask import Blueprint,render_template
-from Models.db import db
+from flask import Blueprint, render_template
 from Utils.security import token_required
-from flask import current_app as app
 
 main_bp = Blueprint('main', __name__)
+
 @main_bp.route('/home', methods=['GET'])
-@token_required
-def home(current_user):
-    return render_template('home.html', user=current_user)
+def home():
+    return render_template('home.html')
 
 @main_bp.route('/nosotros', methods=['GET'])
-@token_required
-def nosotros_page(current_user):
-    return render_template('nosotros.html', user=current_user)
+def nosotros_page():
+    return render_template('nosotros.html')
 
 @main_bp.route('/contacto', methods=['GET'])
-@token_required
-def contacto_page(current_user):
-    return render_template('contacto.html', user=current_user)
+def contacto_page():
+    return render_template('contacto.html')
+
+@main_bp.route('/reserva', methods=['GET'])
+def reserva_page():
+    return render_template('reserva.html')
