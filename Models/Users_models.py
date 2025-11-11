@@ -1,5 +1,6 @@
 import uuid
 from Models.db import db
+from Models.SolicitudFlete import SolicitudFlete
 from datetime import datetime
 
 class User(db.Model):
@@ -34,4 +35,3 @@ class User(db.Model):
             "email":self.email,
             "role":self.role
         }
-from Models.SolicitudFlete import SolicitudFlete

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     const res = await fetch('/home', {
-      headers: { 'Authorization': 'Bearer ' + token }
+      headers: { 'Authorization': `Bearer ${token}` }
     });
 
     if (!res.ok) {
