@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('token', result.token);
                 localStorage.setItem('role', result.role);
                 localStorage.setItem('username', result.username);
+                alert('✅ Bienvenido ' + result.username);
                 window.location.href = '/home';
             } else {
                 alert(result.message);

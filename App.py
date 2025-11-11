@@ -6,6 +6,7 @@ from Routes.Main import main_bp
 from Routes.Clientes import Clientes_bp 
 from Routes.Fleteros import Fleteros_bp
 from flask_migrate import Migrate
+from Routes.Main import main_bp
 
 
 app = Flask(__name__)
@@ -27,10 +28,6 @@ app.register_blueprint(Fleteros_bp)
 def index():
         return render_template('auth/register.html')
 
-@app.route('/home')
-def home():
-        return render_template('home.html')
-        
 if __name__ == "__main__":
     app.run(debug=True)
     
