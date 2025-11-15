@@ -2,7 +2,7 @@ from Models.db import db
 from datetime import datetime
 
 class SolicitudFlete(db.Model):
-    __tablename__='solicitud_Fletes'
+    __tablename__='solicitud_fletes'
     
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
@@ -18,6 +18,12 @@ class SolicitudFlete(db.Model):
     cliente = db.relationship('User', foreign_keys=[cliente_id], back_populates='solicitudes_cliente')
     fletero = db.relationship('User', foreign_keys=[fletero_id], back_populates='solicitudes_fletero')
     
+    # Opcional: coordenadas
+    origen_lat = db.Column(db.Float)
+    origen_lng = db.Column(db.Float)
+    destino_lat = db.Column(db.Float)
+    destino_lng = db.Column(db.Float)
+    
     def to_dict(self):
         return{
             'id': self.id,
@@ -28,5 +34,5 @@ class SolicitudFlete(db.Model):
             'detalle': self.detalle,
             'cliente_id': self.cliente_id,
             'fletero_id': self.fletero_id
-            }
+        }
          
