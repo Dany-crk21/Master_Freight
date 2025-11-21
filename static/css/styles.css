@@ -95,13 +95,7 @@ footer {
     /* Quitar la sombra interior (box-shadow) que pone Bootstrap por defecto */
     box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25); 
 }
-.register-logo{
-	position: absolute;
-	width: 270px;
-	height: auto;
-	top: 19px;
-	
-}
+
 
 /* ---------------------------------------------------- */
 /* Estilos para el botón */
