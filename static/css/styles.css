@@ -77,13 +77,7 @@ footer {
     /* Relleno interno (ya manejado por p-4) */
 }
 
-.logo-register{
-	position: absolute;
-	width: 300px;
-	height: auto;
-	top: 5px;
-	left: 250px;
-}
+
 
 /* ---------------------------------------------------- */
 /* Estilos para los campos del formulario */
