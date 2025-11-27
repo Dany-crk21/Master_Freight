@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cliente-Dashboard</title>
+  <title>cliente_dashboard</title>
   <link rel="stylesheet" href="/static/css/styles.css">
   <style>
     *{
@@ -15,29 +15,74 @@
     body{
       min-height: 100vh;
     }
-
     a{
       text-decoration: none;
     }
     li{
       list-style: none;
-    }
-    h1,h2{
       color: black;
     }
+    h1{
+      color: black;
+    }
+
   </style>
 </head>
 <body>
-  <div class="side-menu">
-    <div class="brand-name">
-      <h1>cilente Dashboard</h2>
-    </div>
-    <ul>
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#">Usuarios</a></li>
-      <li><a href="#">Fecha Pedidos</a></li>
-      <li><a href="#"></a></li>
-    </ul>
+  <img src="/static/imagen/logo.png" alt="fondo" class="fondo-dashboard">
+  <!-- mapa de ubicacion del cliente-->>
+  <div class="mapa-cliente-dashboard">
+    <h1>mapa de la ubicacion</h1>
+    <p>muestra la ubicacion de datos</p>
+    <iframe width="1000" height="450" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2897.1989238570704!2d-68.8259246524316!3d-33.03268528776502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1763919420598!5m2!1ses-419!2sar"></iframe>
   </div>
+  <!-- tabal de datos de los usuarios-->>
+   <div class="modi-tabla">
+       <table border id="tablaclientes">
+        <thead>
+          <tr>
+            <th>Nro</th>
+            <th>Nombre</th>
+            <th>telefono</th>
+            <th>correo</th>
+            <th>desde</th>
+            <th>hasta</th>
+            <th>tipo de mudanza</th>
+            <th>Estado</th>
+          </tr>
+          <tr></tr>
+        </thead>
+      </table>
+   </div>
+   <script>
+    let clientesFormData = new FormData(form);
+     let tablaclientesRef = document.getElementById("tablaclientes");
+     let newclientesRow = tablaclientesRef.insertRow(-1);
+
+     let newTypeCellRef = newclientesRowRef.insertCell(0);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+
+    let newTypeCellRef = newclientesRowRef.insertCell(1);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+
+    let newTypeCellRef = newclientesRowRef.insertCell(2);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+
+    let newTypeCellRef = newclientesRowRef.insertCell(3);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+
+    let newTypeCellRef = newclientesRowRef.insertCell(4);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+
+    let newTypeCellRef = newclientesRowRef.insertCell(5);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+
+    let newTypeCellRef = newclientesRowRef.insertCell(6);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+
+    let newTypeCellRef = newclientesRowRef.insertCell(7);
+     newTypeCellRef.textContent = clientesFormData.get("------")
+   </script>
+
 </body>
 </html>

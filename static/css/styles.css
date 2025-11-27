@@ -21,9 +21,9 @@ footer {
 	position: absolute;
 	top: absolute;
     text-align: center;
-    background-color: #003366;
+    background-color: #0f119a;
     padding: 8px;
-    font-size: 18px;
+    font-size: 10px;
     color: #ccc;
 	width: 100%;
 }
@@ -85,9 +85,9 @@ footer {
 /* Enfocar los campos de entrada */
 .form-control:focus, .form-select:focus {
     /* Color de borde al enfocar, usando el color de éxito de Bootstrap */
-    border-color: #28a745; 
+    border-color: #3f16df; 
     /* Quitar la sombra interior (box-shadow) que pone Bootstrap por defecto */
-    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25); 
+    box-shadow: 0 0 0 0.25rem rgba(41, 13, 200, 0.25); 
 }
 
 
@@ -280,28 +280,34 @@ footer {
 	margin-right: 8px;
 }
 /*dashboard cliente configuracion*/
-.side-menu{
-	position: fixed;
-	background: rgb(21, 13, 156);
-	width: 20vW;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+.mapa-cliente-dashboard{
+	opacity: 0.9;
+	position: absolute;
+	top: 100px;
+	left: 300px;
+	border-radius: 10px;
 }
-.side-menu .brand-name{
-	height: 10vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+
+.modi-tabla{
+	position: absolute;
+	top: 700px;
+	left: 450px;
 }
-.side-menu li{
-	font-size: 24px;
-	padding: 10px 40px;
-	color: white;
-	display: flex;
-	align-items: center;
+th{
+	width: 400px;
+	height: auto;
 }
-.side-menu li:hover{
-	background: white;
-	color: #000;
+table{
+	border-collapse: collapse;
+}
+table thead{
+	background-color: #100973;
+	color: #ffffff;
+	border: 1px solid #7b7e7c;
+}
+
+/*fondo para los dashboard*/
+.fondo-dashboard{
+	position: absolute;
+	left: 100px;
 }

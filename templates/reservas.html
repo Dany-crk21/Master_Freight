@@ -10,30 +10,30 @@
     <!-- Menú superior -->
     <header class="header">
         <nav class="nav">
-            <img src="/static/imagen/logo.png" alt="logo" class="Logo">
+          <img src="/static/imagen/logo.png" alt="Logo" class="Logo">
+          <button class="toggle"><i class="fa-regular fa-bars"></i></button>
           <ul class="nav-menu">
+             <li class="nav-menu-item"><a href="/home" class="nav-menu-link nav-link">Home</a></li>
+            <li class="nav-menu-item"><a href="/nosotros" class="nav-menu-link nav-link">Nosotros</a></li>
             <li class="nav-menu-item">
-                <a href="/home" class="nav-menu-link nav-link">Home</a></li>
-            <li class="nav-menu-item">
-                <a href="/nosotros" class="nav-menu-link nav-link">Nosotros</a></li>
-            <li class="nav-menu-item">
-                <a href="/servicio" class="nav-menu-link nav-link">Servicios</a></li>
+                <a href="/servisios" class="nav-menu-link nav-link">servicios</a></li>
             <li class="nav-menu-item">
                 <a href="/contacto" class="nav-menu-link nav-link">contacto</a></li>
             <li class="nav-menu-item" >
-                <a href="/reserva"class="nav-menu-link nav-link">Reserva de flete</a></li>
+                <a href="/Reserva"class="nav-menu-link nav-link">reserva de flete</a></li>
+            <li><a href="#"><span class="bars"></span></a></li>
           </ul>
         </nav>
-
     </header>
-    
 
     <section class="form-register">
         <h4>Reservacion</h4>
         <input class="ingreso" type="text" name="nombre" id="nombre" placeholder="Nombre">
         <input class="ingreso" type="tel" name="telefono" id="telefono" placeholder="Telefono">
         <input class="ingreso" type="email" name="correo" id="correo" placeholder="Correo electronico">
+        <h5>Lugar de origen</h5>
         <input class="ingreso" type="text" name="desde" id="desde" placeholder="Desde">
+        <h5>Fecha predestinada</h5>
         <input class="ingreso" type="text" name="hasta" id="hasta" placeholder="Hasta">
         
         <label style="font-family: Arial, Helvetica, sans-serif;">tipo de mudanza</label>
