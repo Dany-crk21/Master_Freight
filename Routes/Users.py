@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify, render_template
 from Models.Users_models import User
 from Models.db import db
 from Utils.security import make_password_hash, check_password, token_required
+from werkzeug.utils import secure_filename
+import os
 import jwt
 from flask import current_app as app
 from datetime import datetime, timedelta
@@ -30,7 +32,8 @@ def register_with_role(role):
         email=data['email'],
         password = hash_hex,
         salt = salt_hex,
-        role = role
+        role = role,
+        imagen_perfil = "/static/default_profile.png"
     ) 
     db.session.add(new_user)
     db.session.commit()
@@ -99,3 +102,38 @@ def list_users(current_user):
         } for u in users
     ]
     return jsonify(users_data)
+
+# Ruta para subir imagen de perfil
+UPLOAD_FOLDER = 'static/uploads/profile_pics'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+def allowed_file(filename):
+    return "." in filename and \
+            filename.rsplit(".",1)[1].lower() in ALLOWED_EXTENSIONS
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER   
+    
+@auth_bp.route("/upload_profile", methods=['POST'])
+@token_required()
+def upload_profile_picture(current_user):
+    if 'imagen' not in request.files:
+        return jsonify({'message':"No file part"}), 400
+    
+    file = request.files["imagen"]
+    
+    if file.filename == "":
+        return jsonify({'message':"No selected file"}), 400
+    
+    if file and allowed_file(file.filename):
+        filename = secure_filename(current_user.id + "_" + file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        # Guardar la ruta en la BD
+        current_user.profile_image = filename
+        db.session.commit()
+        
+        return jsonify({
+            "message":"Imagen subida exitosamente",
+            "Imagen_perfil": current_user.imagen_perfil
+        }), 200
+    
+    

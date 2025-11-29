@@ -13,6 +13,7 @@ class User(db.Model):
     salt = db.Column(db.String(32), nullable = False) # 16 bytes hex
     role = db.Column(db.String(20), default = "cliente") # possible roles: user, admin
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    imagen_perfil = db.Column(db.String(255), default="/static/imagen/default.png")
     
     solicitudes_cliente = db.relationship('SolicitudFlete',
                     foreign_keys='SolicitudFlete.cliente_id', 
@@ -33,5 +34,6 @@ class User(db.Model):
             "id": self.id,
             "username":self.username,
             "email":self.email,
-            "role":self.role
-        }
+            "role":self.role,
+            "imagen_perfil": self.imagen_perfil,
+            }
