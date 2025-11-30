@@ -33,7 +33,7 @@ def register_with_role(role):
         password = hash_hex,
         salt = salt_hex,
         role = role,
-        imagen_perfil = "/static/default_profile.png"
+        imagen_perfil = "/static/uploads/default.png"
     ) 
     db.session.add(new_user)
     db.session.commit()
@@ -74,20 +74,19 @@ def show_register_page():
     return render_template("auth/register.html")
 
   
-# Servir template de dashboard
-@auth_bp.route("/dashboard", methods=["GET"])
-def dashboard_page():
-    return render_template('dashboard.html')
-
 # Panel de usuario autenticado
 @auth_bp.route("/api/dashboard", methods=["GET"])
-@token_required()
+@token_required()   # No requiere rol, solo estar logueado
 def dashboard_api(current_user):
     return jsonify({
-        'id': current_user.id,
-        'username': current_user.username,
-        'role': current_user.role
-    })
+        "message": "Bienvenido al dashboard",
+        "user": {
+            "id": current_user.id,
+            "username": current_user.username,
+            "role": current_user.role,
+            "imagen_perfil": current_user.imagen_perfil
+        }
+    }), 200
 
 @auth_bp.route("/api/users", methods=["GET"])
 @token_required(role='admin') # solo admin puede acceder
@@ -104,12 +103,12 @@ def list_users(current_user):
     return jsonify(users_data)
 
 # Ruta para subir imagen de perfil
-UPLOAD_FOLDER = 'static/uploads/profile_pics'
+UPLOAD_FOLDER = 'static/uploads/default.png'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
     return "." in filename and \
             filename.rsplit(".",1)[1].lower() in ALLOWED_EXTENSIONS
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER   
+
     
 @auth_bp.route("/upload_profile", methods=['POST'])
 @token_required()
@@ -123,12 +122,14 @@ def upload_profile_picture(current_user):
         return jsonify({'message':"No selected file"}), 400
     
     if file and allowed_file(file.filename):
-        filename = secure_filename(current_user.id + "_" + file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        filename = secure_filename(str(current_user.id + "_" + file.filename))
+        upload_dir = os.path.join(app.root_path, 'static', 'uploads')
+        os.makedirs(upload_dir, exist_ok=True)
+        filepath = os.path.join(upload_dir, filename)
         file.save(filepath)
         
         # Guardar la ruta en la BD
-        current_user.profile_image = filename
+        current_user.imagen_perfil = f"/static/uploads/{filename}"
         db.session.commit()
         
         return jsonify({

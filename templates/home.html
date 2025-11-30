@@ -16,18 +16,31 @@
              <li class="nav-menu-item"><a href="/home" class="nav-menu-link nav-link">Home</a></li>
             <li class="nav-menu-item"><a href="/nosotros" class="nav-menu-link nav-link">Nosotros</a></li>
             <li class="nav-menu-item">
-                <a href="/servisios" class="nav-menu-link nav-link">servicios</a></li>
+                <a href="/servicios" class="nav-menu-link nav-link">servicios</a></li>
             <li class="nav-menu-item">
                 <a href="/contacto" class="nav-menu-link nav-link">contacto</a></li>
             <li class="nav-menu-item" >
                 <a href="/Reserva"class="nav-menu-link nav-link">reserva de flete</a></li>
             <li><a href="#"><span class="bars"></span></a></li>
           </ul>
+          <!-- panel Usuario-->
+        <div id="userPanel" style="display: none; display: flex; align-items: center; gap: 10px;">
+            <img id="profilePic" src="/static/uploads/default.png" alt="Profile" style="width: 48px; height: 48px; border-radius: 50%;">
+            <div>
+                <span id="username" style="font-weight: bold;">Invitado</span><br>
+                <span id="role" style="font-size: 0.8em; color: gray;">-</span>
+            </div>
+            <a href="/perfil" class="nav-menu-link">perfil</a>
+        </div>
         </nav>
     </header>
     <div class="contenedor-home">
         <img src="/static/imagen/fondo-home.png" alt="fondo de camion" class="fondo-camion">
     </div>
+
+    <!-- Botones públicos -->
+    <button id="loginBtn" class="nav-menu-link">Iniciar sesión</button>
+    <button id="registerBtn" class="nav-menu-link">Registrarse</button>
 
     <div class="contenedor-marca">
         <img class="titulo-marca" src="/static/imagen/titulo_marca.png" alt="nombre de la plataforma">

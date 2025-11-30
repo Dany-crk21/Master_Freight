@@ -6,7 +6,6 @@ from Routes.Main import main_bp
 from Routes.Clientes import Clientes_bp 
 from Routes.Fleteros import Fleteros_bp
 from flask_migrate import Migrate
-from Routes.Main import main_bp
 
 
 app = Flask(__name__)
@@ -18,6 +17,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 migrate = Migrate(app, db)
 
+UPLOAD_FOLDER = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 # Registro de Rutas
 app.register_blueprint(auth_bp)
 app.register_blueprint(main_bp)
@@ -26,7 +28,7 @@ app.register_blueprint(Fleteros_bp)
 
 @app.route('/')
 def index():
-        return render_template('auth/register.html')
+    return redirect(url_for('auth.login'))
 
 if __name__ == "__main__":
     app.run(debug=True)
