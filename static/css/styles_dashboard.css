@@ -1,0 +1,147 @@
+.header-movil{
+	background: #de9e09;
+	height: 80px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+.titulo-movil{
+    font-family: 'Montserrat', sans-serif;
+    color: royalblue;
+    font-size: 25px;
+    text-decoration: none;
+    padding: 8px 40px;
+    font-weight: 600;
+}
+
+.menu-dbr{
+	display: flex;
+	justify-content: space-between;
+	max-width: 992px;
+	margin: 0 100px;
+}
+
+.title-link{
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+}
+
+.menu-movil{
+	display: flex;
+	margin-right: 40px;
+	list-style: none;
+}
+
+.menu-movil-item{
+	font-size: 18px;
+	margin: 0 10px;
+	line-height: 80px;
+	text-transform: uperrcase;
+	width: max-content;
+}
+.title-menu{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+	padding: 8px 40px;
+	border-radius: 5px;
+	transition: 0.5s;
+}
+
+.title-menu:hover{
+	background-color: #c8770c;
+}
+
+.menu-dbr .toggle-movil{
+	color: white;
+	background: none;
+	border: none;
+	font-size: 80px;
+	padding: 0 50px;
+	line-height: 60px;
+	
+}
+
+/*barrita de busqueda*/
+.busqueda-movil {
+    /* Ajusta el ancho para que quepa bien en tu menú */
+    width: 250px; 
+    padding: 0 10px; /* Espaciado a los lados */
+}
+.search-form {
+    display: flex; /* Para alinear el input y el botón en una línea */
+    align-items: center;
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que el contenido se ajuste al borde redondeado */
+    background-color: #fff; /* Fondo blanco */
+}
+.search-input {
+    flex-grow: 1; /* Hace que el input tome todo el espacio disponible */
+    border: none; /* Quita el borde por defecto */
+    padding: 8px 10px; /* Relleno interior */
+    font-size: 14px;
+    outline: none; /* Quita el resplandor de enfoque por defecto */
+}
+/* Estilos para el botón de búsqueda */
+.search-button {
+    background-color: #fff; /* O el color que desees (ej: #f0f0f0 para un gris claro) */
+    color: #333;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer; /* Indica que es clickeable */
+    font-size: 16px;
+    line-height: 1;
+    transition: background-color 0.2s;
+}
+.search-button:hover {
+    background-color: #e0e0e0; /* Cambio de color al pasar el ratón */
+}
+/* Opcional: Ajuste para que se vea bien dentro del menú anaranjado que tienes */
+.menu-movil-item {
+    /* Asegúrate de que los elementos del menú se vean bien */
+    display: inline-block; /* O tu display original */
+    /* Otros estilos de .menu-movil-item */
+}
+
+/* 1. Posiciona el contenedor del dropdown */
+.dropdown-menu-parent {
+    /* Es necesario para que el menú desplegable se posicione relativo a este elemento */
+    position: relative; 
+}
+
+/* 2. Estilos para el menú desplegable */
+.dropdown-menu {
+    /* Oculto por defecto */
+    display: none; 
+    
+    /* Lo posiciona bajo el botón "Contacto" */
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    
+    /* Estilos de apariencia */
+    list-style: none; /* Elimina viñetas */
+    padding: 0;
+    margin: 0;
+    background-color: #f9f9f9; /* Un color de fondo */
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+/* 3. Estilo para los elementos individuales del menú */
+.dropdown-menu li a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+/* 4. Estilo de hover (opcional) */
+.dropdown-menu li a:hover {
+    background-color: #ddd;
+}
+/* 5. Clase para MOSTRAR el menú (se añade con JavaScript) */
+.dropdown-menu-show {
+    display: block;
+}

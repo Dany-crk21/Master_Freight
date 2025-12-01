@@ -5,7 +5,7 @@ body {
 	background-size: cover;
 	min-height: 100vh;
 	background-attachment: fixed;
-	color: rgb(239, 177, 7);
+	color: rgb(0, 0, 0);
 	padding: 70px 20px 0;
 	margin: 0;
 }
@@ -18,7 +18,6 @@ body {
 }
 
 footer {
-	position: absolute;
 	top: absolute;
     text-align: center;
     background-color: #0f119a;
@@ -27,6 +26,56 @@ footer {
     color: #ccc;
 	width: 100%;
 }
+
+.usuarios-icon{
+	width: 50px;
+	height: 50px;
+	text-transform: uperrcase;
+	padding: 8px 40px;
+}
+
+/*modificacion del icono de usuario*/
+.user-icon-container {
+  /* Establece el tamaño del contenedor principal */
+  
+  height: 70px;
+  width: 70px;
+  /* Dibuja el círculo exterior */
+  border: 4px solid #cb8f20; /* Borde gris oscuro */
+  border-radius: 50%;
+  /* Usa flexbox para centrar los elementos internos */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Posicionamiento para manejar los elementos internos */
+  position: relative;
+  overflow: hidden; /* Esto ayuda a cortar partes del torso si es necesario */
+}
+
+.head {
+  /* La cabeza es un círculo más pequeño */
+  width: 35px;
+  height: 35px;
+  background-color: #34495e; /* Color similar al borde */
+  border-radius: 50%;
+  /* Posiciona la cabeza en la parte superior */
+  margin-top: 18px;
+  z-index: 1; /* Asegura que esté sobre el torso */
+}
+
+.torso {
+  /* El torso es un gran semicírculo */
+  width: 120px; /* Más ancho que el contenedor para asegurar que llene los lados */
+  height: 120px; /* La altura es grande, pero solo se verá la parte superior */
+  background-color: #2980b9; /* El color azul */
+  /* Hace un círculo completo, pero solo la mitad inferior se verá */
+  border-radius: 50%;
+  /* Ajusta la posición para que solo se vea la parte superior */
+  position: absolute;
+  bottom: -70px; /* Mueve el círculo hacia arriba para que solo se vea la parte del "hombro" */
+  z-index: 0;
+}
+
 
 /* Estilos para la tarjeta (el contenedor principal del login) */
 .card {
@@ -148,7 +197,7 @@ footer {
 	width: max-content;
 }
 .nav-menu-link{
-	padding: 8px 12px;
+	padding: 8px 40px;
 	border-radius: 5px;
 	transition: 0.5s;
 }
@@ -194,13 +243,33 @@ footer {
 	height: auto;
 }
 
-.atributos{
-	background-color: rgba(0, 0, 0, 0.4);
-    margin: 40px auto;
-    padding: 40px;
-    border-radius: 15px;
-    max-width: 900px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+.etiqueta-modofic{
+	background-color: #007bff;
+	background: linear-gradient(to right, #0056b3, #00c6ff); /* Ejemplo: De azul oscuro a azul claro */
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+}
+.filas-bap{
+	padding: 0px 300px;
+	display: flex;
+	margin-right: 100px;
+	list-style: none;
+}
+.posicion-bap{
+	font-size: 18px;
+	margin: 0 50px;
+}
+.posicion-img-home{
+    position: relative;
+	width: 400px;
+	height: 600px;
+	border-radius: 15px;
+	top: 400px;
+	left: 700px;
+}
+.informe-empleado{
+	display: flex;
 }
 
 /*----------------------------------------------------------------------------------------------*/
@@ -280,34 +349,8 @@ footer {
 	margin-right: 8px;
 }
 /*dashboard cliente configuracion*/
-.mapa-cliente-dashboard{
-	opacity: 0.9;
+.mapa-cliente-dashboard {
 	position: absolute;
-	top: 100px;
-	left: 300px;
-	border-radius: 10px;
-}
-
-.modi-tabla{
-	position: absolute;
-	top: 700px;
-	left: 450px;
-}
-th{
-	width: 400px;
-	height: auto;
-}
-table{
-	border-collapse: collapse;
-}
-table thead{
-	background-color: #100973;
-	color: #ffffff;
-	border: 1px solid #7b7e7c;
-}
-
-/*fondo para los dashboard*/
-.fondo-dashboard{
-	position: absolute;
-	left: 100px;
+    width: 100%;
+    height: 100%;
 }
