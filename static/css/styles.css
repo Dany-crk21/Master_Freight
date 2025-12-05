@@ -75,8 +75,6 @@ footer {
   bottom: -70px; /* Mueve el círculo hacia arriba para que solo se vea la parte del "hombro" */
   z-index: 0;
 }
-
-
 /* Estilos para la tarjeta (el contenedor principal del login) */
 .card {
 	position: absolute;
@@ -170,7 +168,7 @@ footer {
 	height: 75px;
 	width: auto;
 }
-
+/*menu superior*/
 .nav{
 	display: flex;
 	justify-content: space-between;
@@ -201,7 +199,6 @@ footer {
 	border-radius: 5px;
 	transition: 0.5s;
 }
-
 .nav-menu-link:hover{
 	background-color: #202a99;
 }
@@ -215,7 +212,12 @@ footer {
 	line-height: 60px;
 	
 }
-
+/*-----------------------------------------*/
+.register-sesion-butom{
+	background-color:  #202a99;
+	color: rgb(255, 255, 255);
+	font-family: 'Montserrat', sans-serif;
+}
 
 .fondo-camion{
 	width: 1500px;
@@ -244,8 +246,6 @@ footer {
 }
 
 .etiqueta-modofic{
-	background-color: #007bff;
-	background: linear-gradient(to right, #0056b3, #00c6ff); /* Ejemplo: De azul oscuro a azul claro */
 	width: 100px;
 	height: 100px;
 	border-radius: 50px;
@@ -270,6 +270,21 @@ footer {
 }
 .informe-empleado{
 	display: flex;
+}
+/*columna de informacion en el home*/
+.information-table{
+	margin-right: 40px;
+	list-style: none;
+}
+.information-model{
+	font-size: 15px;
+	text-transform: uperrcase;
+	text-transform: uperrcase;
+}
+.information-text{
+	padding: 8px 40px;
+	text-decoration: none;
+	font-family: 'Montserrat', sans-serif;
 }
 
 /*----------------------------------------------------------------------------------------------*/

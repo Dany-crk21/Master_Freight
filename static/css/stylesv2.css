@@ -1,0 +1,95 @@
+body {
+	background-image: url("/static/imagen/fondo.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	min-height: 100vh;
+	background-attachment: fixed;
+	color: rgb(0, 0, 0);
+	padding: 70px 20px 0;
+	margin: 0;
+}
+
+/*solicitudes fletero*/
+
+        :root {
+            --color-accept: #4CAF50;
+            --color-reject: #F44336;
+            --color-pending: #e0e0e0;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .main-content {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        /* Estilo general de las tarjetas */
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%; /* Para mostrar dos por fila en un contenedor de 900px */
+            min-width: 350px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .card-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .card-details {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+        .accept-btn {
+            background-color: var(--color-accept);
+        }
+        .reject-btn {
+            background-color: var(--color-reject);
+        }
+        /* Estado Local */
+        .status-display {
+            margin-top: 15px;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: var(--color-pending);
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .status-display.ACEPTADO {
+            background-color: var(--color-accept);
+            color: white;
+        }
+        .status-display.RECHAZADO {
+            background-color: var(--color-reject);
+            color: white;
+        }
+        .note {
+            font-size: 0.8em;
+            color: gray;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+/*solicitud cliente*/
