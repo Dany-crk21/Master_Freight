@@ -7,8 +7,21 @@ Clientes_bp = Blueprint('clientes', __name__)
 
 # Panel del Cliennte
 @Clientes_bp.route('/cliente/panel', methods=['GET'])
-def cliente_panel(current_user):
-    return render_template('Panel_Cliente.html', user=current_user)
+def cliente_panel():
+    return render_template('Panel_Cliente.html')
+
+# Obtener nombre y rol del cliente
+@Clientes_bp.route('/cliente/me', methods=['GET'])
+@token_required(role='cliente')
+def cliente_me(current_user):
+    return jsonify({
+        "id": current_user.id,
+        "username": current_user.username,
+        "email": current_user.email,
+        "role": current_user.role,
+        "imagen_perfil": current_user.imagen_perfil
+    }), 200
+
         
 # Rutas para clientes
 @Clientes_bp.route('/cliente/solicitar', methods=['POST'])
