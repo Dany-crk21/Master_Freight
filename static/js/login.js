@@ -18,16 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const result = await res.json();
 
-            if (res.ok) {
-                localStorage.setItem('token', result.token);
-                localStorage.setItem('role', result.role);
-                localStorage.setItem('username', result.username);
-                alert('✅ Bienvenido ' + result.username);
-                window.location.href = '/home';
-            } else {
-                alert(result.message);
+        if (res.ok) {
+            localStorage.setItem("token", result.token);
+    
+            if (result.role === "cliente") {
+                window.location.href = "/cliente/panel";
+            } else if (result.role === "fletero") {
+                windows.location.href = "/templates/panel_Fletero.html";
             }
-        } catch (err) {
+        }
+    } catch (err) {
             console.error('Error:', err);
         }
     });

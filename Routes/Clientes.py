@@ -1,10 +1,15 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify,render_template
 from Models.SolicitudFlete import SolicitudFlete
 from Models.db import db
 from Utils.security import token_required
 
 Clientes_bp = Blueprint('clientes', __name__)
 
+# Panel del Cliennte
+@Clientes_bp.route('/cliente/panel', methods=['GET'])
+def cliente_panel(current_user):
+    return render_template('Panel_Cliente.html', user=current_user)
+        
 # Rutas para clientes
 @Clientes_bp.route('/cliente/solicitar', methods=['POST'])
 @token_required(role='cliente')

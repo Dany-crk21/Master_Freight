@@ -136,5 +136,7 @@ def upload_profile_picture(current_user):
             "message":"Imagen subida exitosamente",
             "Imagen_perfil": current_user.imagen_perfil
         }), 200
+        
+
     
     

@@ -1,0 +1,35 @@
+body {
+  background-image: url("/static/imagen/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(2px);
+  font-family: Arial, sans-serif;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  color: #fff;
+  padding: 12px 20px;
+}
+
+.cliente-wrapper {
+  max-width: 700px;
+  margin: 50px auto;
+  background: rgba(255,255,255,0.85);
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.cliente-panel h2 {
+  color: #333;
+}
+
+.list-group-item {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
