@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente: Estado del Pedido</title>
+    <link rel="stylesheet" href="/static/css/stylesv2.css">
+    <style>
+        :root {
+            --color-yellow-header: #FFF176;
+            --color-accept: #4CAF50;
+            --color-reject: #F44336;
+            --color-pending-bg: #FFF3E0;
+            --color-pending-text: #FF9800;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        /* Estilo del encabezado superior */
+        .header-yellow {
+            background-color: var(--color-yellow-header);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .header-yellow h2 { margin: 0; font-size: 1.5em; }
+        .header-yellow p { font-size: 0.9em; color: #555; margin: 5px 0 0; }
+        
+        /* Estilo general de las tarjetas */
+        .card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;
+            border-left: 5px solid transparent;
+            transition: border-left-color 0.5s;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .card-details {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        /* Insignia de estado */
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: bold;
+            transition: background-color 0.5s;
+        }
+        
+        /* Colores de estado dinámicos */
+        .card.PENDIENTE {
+            border-left-color: var(--color-pending-text);
+        }
+        .card.PENDIENTE .status-badge {
+            background-color: var(--color-pending-bg);
+            color: var(--color-pending-text);
+        }
+
+        .card.ACEPTADO {
+            border-left-color: var(--color-accept);
+        }
+        .card.ACEPTADO .status-badge {
+            background-color: #E8F5E9;
+            color: var(--color-accept);
+        }
+
+        .card.RECHAZADO {
+            border-left-color: var(--color-reject);
+        }
+        .card.RECHAZADO .status-badge {
+            background-color: #FFEBEE;
+            color: var(--color-reject);
+        }
+
+        .refresh-note {
+            font-size: 0.8em;
+            color: gray;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Mis solicitudes</h1>
+    <h3>En la tarjeta muestra el estado del envío. <br>
+       Indica desde dónde y hacia dónde va, el tipo de carga, el nombre del fletero asignado y el estado del servicio (Aceptado/Cancelado)
+    </h3>
+    <h3>Además, incluye una sección llamada “Vista de Rastreo en Vivo”, que sirve para ver la ubicación del vehículo en tiempo real cuando el transporte esté en curso.</h3>
+
+    <!--cartilla 1-->
+    <div class="main-content">
+        <div class="card" data-id="F001">
+            <div class="card-header">
+                <span>F001 - 2025-12-10</span>
+                <span class="status-badge" data-status-for="F001">Pendiente</span>
+            </div>
+            <div class="card-details">Origen: Maipú | Destino: Las Condes<br>Peso: 500kg, Cajas.</div>
+        </div>
+    <!--cartilla 2-->
+        <div class="card" data-id="F002">
+            <div class="card-header">
+                <span>F002 - 2025-12-12</span>
+                <span class="status-badge" data-status-for="F002">Pendiente</span>
+            </div>
+            <div class="card-details">Origen: Santiago | Destino: Ñuñoa<br>Peso: 250kg, Muebles.</div>
+        </div>
+    <!--cartilla 3-->
+        <div class="card" data-id="F003">
+            <div class="card-header">
+                <span>F003 - 2025-12-15</span>
+                <span class="status-badge" data-status-for="F003">Pendiente</span>
+            </div>
+            <div class="card-details">Origen: Puente Alto | Destino: Vitacura<br>Peso: 800kg, Materiales.</div>
+        </div>
+    <!--cartilla 4-->    
+        <div class="card" data-id="F004">
+            <div class="card-header">
+                <span>F004 - 2025-12-18</span>
+                <span class="status-badge" data-status-for="F004">Pendiente</span>
+            </div>
+            <div class="card-details">Origen: Recoleta | Destino: Peñalolén<br>Peso: 100kg, Electrodomésticos.</div>
+        </div>
+    <!--javascript-->
+      <script>
+        const STORAGE_PREFIX = 'pedidoEstado_';
+        const cards = document.querySelectorAll('.card');
+
+        function verificarEstado() {
+            cards.forEach(card => {
+                const id = card.dataset.id;
+                // Leer el estado del almacenamiento local. Si no existe, es 'PENDIENTE'.
+                const estado = localStorage.getItem(STORAGE_PREFIX + id) || 'PENDIENTE';
+                
+                const statusBadge = document.querySelector(`[data-status-for="${id}"]`);
+                
+                // Limpiar clases de estado anteriores en la tarjeta y el badge
+                card.classList.remove('PENDIENTE', 'ACEPTADO', 'RECHAZADO');
+                statusBadge.classList.remove('PENDIENTE', 'ACEPTADO', 'RECHAZADO');
+
+                // Aplicar la clase y el texto según el estado
+                if (estado === 'ACEPTADO') {
+                    statusBadge.textContent = 'ACEPTADO';
+                    card.classList.add('ACEPTADO');
+                } else if (estado === 'RECHAZADO') {
+                    statusBadge.textContent = 'RECHAZADO';
+                    card.classList.add('RECHAZADO');
+                } else {
+                    statusBadge.textContent = 'PENDIENTE';
+                    card.classList.add('PENDIENTE');
+                }
+            });
+        }
+
+        // 1. Verificar el estado al cargar la página
+        document.addEventListener('DOMContentLoaded', verificarEstado);
+
+        // 2. Establecer un intervalo para verificar automáticamente el estado cada 2 segundos
+        setInterval(verificarEstado, 2000); 
+
+        // 3. Bonus: Escuchar cambios de storage en otras pestañas (más robusto)
+        window.addEventListener('storage', (e) => {
+            if (e.key && e.key.startsWith(STORAGE_PREFIX)) {
+                verificarEstado();
+            }
+        });
+    </script>
+
+</body>
+</html>
