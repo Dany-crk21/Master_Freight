@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📍 Mapa de Ubicación Interactiva</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f9;
+}
+
+h1 {
+    color: #333;
+    margin: 20px 0;
+}
+
+#map {
+    /* Es crucial darle un ancho y un alto fijo para que Leaflet funcione */
+    height: 60vh;
+    width: 80%;
+    max-width: 900px;
+    border: 5px solid #007bff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%;
+    max-width: 900px;
+}
+
+.info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.info strong {
+    color: #007bff;
+}
+    </style>
+</head>
+<body>
+    <h1>¡Encuentra y Marca Tu Ubicación!</h1>
+    
+    <div id="map"></div>
+
+    <div class="info">
+        <p><strong>Latitud:</strong> <span id="latitud">N/A</span></p>
+        <p><strong>Longitud:</strong> <span id="longitud">N/A</span></p>
+        <p><strong>Ubicación Marcada:</strong> <span id="nombre-ubicacion">Haz click en el mapa para marcar</span></p>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script>
+      // ==========================================================
+// 1. CONFIGURACIÓN INICIAL DEL MAPA
+// ==========================================================
+const defaultLat = -32.8894; // Coordenadas por defecto (Mendoza)
+const defaultLng = -68.8458;
+const defaultZoom = 13;
+
+const map = L.map('map').setView([defaultLat, defaultLng], defaultZoom);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Variables para manejar los marcadores
+let userLocationMarker = null; // Para la ubicación del navegador
+let clickMarker = null;        // Para el marcador puesto con el ratón
+
+// Referencias a los elementos HTML
+const latDisplay = document.getElementById('latitud');
+const lngDisplay = document.getElementById('longitud');
+const nameDisplay = document.getElementById('nombre-ubicacion');
+
+
+// ==========================================================
+// 2. FUNCIÓN PARA OBTENER EL NOMBRE (Geocodificación Inversa)
+// ==========================================================
+
+/**
+ * Consulta la API de Nominatim para obtener el nombre de una ubicación a partir de sus coordenadas.
+ * @param {number} lat Latitud
+ * @param {number} lng Longitud
+ */
+async function getAddressFromCoords(lat, lng) {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.display_name) {
+            // Muestra el nombre completo de la ubicación
+            nameDisplay.textContent = data.display_name;
+        } else {
+            nameDisplay.textContent = 'Nombre de ubicación no encontrado.';
+        }
+    } catch (error) {
+        console.error("Error al obtener la dirección:", error);
+        nameDisplay.textContent = 'Error al consultar el servicio de ubicación.';
+    }
+}
+
+
+// ==========================================================
+// 3. FUNCIÓN AL HACER CLICK EN EL MAPA
+// ==========================================================
+
+function onMapClick(e) {
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+
+    // 1. Actualiza el marcador
+    if (clickMarker) {
+        clickMarker.setLatLng(e.latlng);
+    } else {
+        // Crea un nuevo marcador, diferente al de la ubicación del usuario
+        clickMarker = L.marker(e.latlng, {
+            icon: L.icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            })
+        }).addTo(map)
+        .bindPopup("Ubicación marcada por el usuario")
+        .openPopup();
+    }
+
+    // 2. Actualiza las coordenadas en el HTML
+    latDisplay.textContent = lat.toFixed(6);
+    lngDisplay.textContent = lng.toFixed(6);
+
+    // 3. Obtiene y muestra el nombre de la ubicación
+    nameDisplay.textContent = 'Buscando nombre...';
+    getAddressFromCoords(lat, lng);
+}
+
+// 4. Asigna la función de click al mapa
+map.on('click', onMapClick);
+
+
+// ==========================================================
+// 5. FUNCIÓN DE UBICACIÓN DEL NAVEGADOR (Opcional, se mantiene)
+// ==========================================================
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        // Si el navegador no soporta geolocalización, solo se permite marcar con el ratón
+        alert("La geolocalización de tu navegador no está disponible, pero puedes marcar ubicaciones con el ratón.");
+        nameDisplay.textContent = 'Geolocalización no soportada. ¡Haz click en el mapa!';
+    }
+}
+
+function showPosition(position) {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+    const userLatLng = [lat, lng];
+
+    // Centra el mapa en la ubicación del usuario
+    map.setView(userLatLng, 16); 
+
+    // Crea o actualiza el marcador de la ubicación del navegador (color azul por defecto)
+    if (userLocationMarker) {
+        userLocationMarker.setLatLng(userLatLng);
+    } else {
+        userLocationMarker = L.marker(userLatLng).addTo(map)
+            .bindPopup("¡Tu ubicación actual (navegador)!");
+    }
+    
+    // Al cargar, también muestra las coordenadas de la ubicación actual
+    latDisplay.textContent = lat.toFixed(6);
+    lngDisplay.textContent = lng.toFixed(6);
+    nameDisplay.textContent = 'Tu ubicación actual (Buscando nombre...)';
+    getAddressFromCoords(lat, lng);
+}
+
+function showError(error) {
+    console.error("Error al obtener la ubicación del navegador:", error);
+    // Si falla la ubicación del navegador, el mapa queda en la ubicación por defecto.
+}
+
+// Inicia la búsqueda de la ubicación del navegador al cargar
+getLocation();
+    </script>
+</body>
+</html>

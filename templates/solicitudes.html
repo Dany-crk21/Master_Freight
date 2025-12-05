@@ -38,7 +38,7 @@
         /* Estilo general de las tarjetas */
         .card {
             background-color: white;
-            padding: 15px;
+            padding: 20px 15px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -99,15 +99,26 @@
             color: gray;
             margin-top: 10px;
         }
+        .cuadrado{
+          width: 1100px;
+          height: 90px;
+          background-color: #f6df11;
+          border-radius: 10px;
+          padding: 10px 30px;
+        }
+        .cuadrado h3{
+          text-align: center;
+        }
     </style>
 
 </head>
 <body>
     <h1>Mis solicitudes</h1>
-    <h3>En la tarjeta muestra el estado del envío. <br>
+    <div class="cuadrado">
+      <h3>En la tarjeta muestra el estado del envío. <br>
        Indica desde dónde y hacia dónde va, el tipo de carga, el nombre del fletero asignado y el estado del servicio (Aceptado/Cancelado)
     </h3>
-    <h3>Además, incluye una sección llamada “Vista de Rastreo en Vivo”, que sirve para ver la ubicación del vehículo en tiempo real cuando el transporte esté en curso.</h3>
+    </div>
 
     <!--cartilla 1-->
     <div class="main-content">
