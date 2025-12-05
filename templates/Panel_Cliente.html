@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📍 Calculadora de Rutas en Maipú</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="/static/css/stylesv2.csss">
+    <link rel="stylesheet" href="/static/css/stylesv2.css">
     <style>
 
 h1 {
@@ -73,7 +73,6 @@ h1 {
     </style>
 </head>
 <body>
-<<<<<<< Updated upstream
 
     <div class="header-bar">
         <h2> Master Freight - Cliente</h2>
@@ -90,15 +89,16 @@ h1 {
 
         <!-- BOTONES PRINCIPALES -->
         <button class="btn-master" onclick="location.href='/cliente/solicitudes'">
-            Ver mis Solicitudes
+            <a href="/solicitudes">Ver mis Solicitudes</a>
         </button>
 
         <button class="btn-master" onclick="location.href='/cliente/solicitar'">
+            <a href="/reserva"></a>
             Solicitar Flete
         </button>
 
         <button class="btn-master" onclick="location.href='/cliente/perfil'">
-            Perfil
+            <a href="/perfiles-fletes">Perfil</a>
         </button>
 
         <br><br>
@@ -110,9 +110,6 @@ h1 {
     <div class="footer-mf">
         Copyright @MasterFreight
     </div>
-=======
-    <h1>Calculadora de Rutas: Maipú, Mendoza</h1>
->>>>>>> Stashed changes
     
     <div id="map"></div>
 
@@ -127,6 +124,9 @@ h1 {
             <input type="text" id="destino-input" readonly placeholder="Marca el punto de llegada...">
         </div>
     </div>
+    <footer>
+        &copy; 2025 Máster Freight — Todos los derechos reservados.
+    </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
