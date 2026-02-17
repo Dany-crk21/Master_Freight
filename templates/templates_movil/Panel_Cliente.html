@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📍 Calculadora de Rutas en Maipú</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/stylesv2.css">
+
+</head>
+<body>
+
+    <div class="header-bar">
+        <h2> Master Freight - Cliente</h2>
+            <!-- CONTENIDO PRINCIPAL -->
+    <div class="cliente-container text-center">
+        
+        <h2 class="fw-bold">Bienvenido <span id="username"></span>!</h2>
+        <p class="text-center">Rol: <span id="role" class="fw-bold text-dark"></span></p>
+        <img id="avatar" class="perfil-img" src="" width="100">
+        <br>
+
+        <!-- BOTONES PRINCIPALES -->
+        <button class="btn-master" onclick="location.href='/cliente/solicitudes'">
+            <a href="/solicitudes"></a>
+            Ver mis Solicitudes
+        </button>
+
+        <button class="btn-master" onclick="location.href='/cliente/solicitar'">
+            <a href="/reserva"></a>
+            Solicitar Flete
+        </button>
+
+        <button class="btn-master" onclick="location.href='/cliente/perfil'">
+            <a href="/perfil-fletero"></a>
+            Perfil
+        </button>
+
+        <br><br>
+        <h3 class="fw-bold">Panel Del Cliente</h3>
+
+    </div>
+
+    </div>
+
+    
+
+
+</body>
+</html>
