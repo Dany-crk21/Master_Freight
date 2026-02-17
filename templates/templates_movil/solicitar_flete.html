@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/panel_cliente.css">
+        <style>
+body{
+    overflow: hidden;
+}
+
+h1 {
+    color: #000;
+    margin: 20px 0;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+#map {
+    height: 97vh;
+    width: 100vw;
+    max-width: 1500px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inputs-container {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    max-width: 900px;
+    gap: 20px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+    color: #000;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 3px solid #000;
+    background-color: #f5f5dc; /* Color beige claro */
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: default; /* Indica que no se puede escribir directamente */
+}
+
+/* Estilos para diferenciar el Origen y Destino */
+.origin label {
+    color: #000; /* Negro para Origen */
+}
+.destination label {
+    color: #000; /* Negro para Destino */
+}
+
+/* Definiciones de color para los marcadores personalizados de Leaflet */
+.leaflet-marker-icon.marker-origin {
+    filter: hue-rotate(120deg); /* Verde */
+}
+.leaflet-marker-icon.marker-destination {
+    filter: hue-rotate(0deg); /* Rojo/Naranja (por defecto) */
+}
+    </style>
+</head>
+<body>
+    <div class="mapa_position"id="map"></div>
+
+    <div class="inputs-container">
+        <div class="input-group origin">
+            <label for="origen">PUNTO DE ORIGEN (CLICK EN MAPA)</label>
+            <input type="text" id="origen-input" readonly placeholder="Marca el punto de partida...">
+        </div>
+        
+        <div class="input-group destination">
+            <label for="destino">PUNTO DE DESTINO (CLICK EN MAPA)</label>
+            <input type="text" id="destino-input" readonly placeholder="Marca el punto de llegada...">
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 Máster Freight — Todos los derechos reservados.
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+        <script>
+        // ==========================================================
+// 1. CONFIGURACIÓN INICIAL DEL MAPA
+// ==========================================================
+// Coordenadas de Maipú, Mendoza
+const MAIPU_LAT = -32.9584934;
+const MAIPU_LNG = -68.7895478;
+const INITIAL_ZOOM = 13;
+
+// Inicialización del mapa
+const map = L.map('map').setView([MAIPU_LAT, MAIPU_LNG], INITIAL_ZOOM);
+
+// Capa base de OpenStreetMap
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Variables de estado y elementos
+let originMarker = null;
+let destinationMarker = null;
+let markingStage = 'ORIGIN'; // Estado inicial: marcando Origen
+
+let originAddress = null;
+let destinationAddress = null;
+
+const originInput = document.getElementById('origen-input');
+const destinationInput = document.getElementById('destino-input');
+
+
+// ==========================================================
+// 2. FUNCIÓN PARA OBTENER EL NOMBRE (Geocodificación Inversa)
+// ==========================================================
+/**
+ * Consulta la API de Nominatim para obtener el nombre legible de una ubicación.
+ */
+async function getAddressFromCoords(lat, lng, targetInput) {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`;
+    
+    targetInput.value = 'Buscando nombre de la ubicación...';
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        let addressName = data.display_name || `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`;
+        targetInput.value = addressName;
+        
+        return addressName;
+    } catch (error) {
+        console.error("Error al obtener la dirección:", error);
+        targetInput.value = `Error al obtener nombre. Usando coordenadas: ${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+        return `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+    }
+}
+
+
+// ==========================================================
+// 3. MANEJO DE CLICK EN EL MAPA
+// ==========================================================
+
+function onMapClick(e) {
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+    
+    // Iconos personalizados (usando Leaflet Color Markers)
+    const greenIcon = L.icon({
+        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+    
+    const redIcon = L.icon({
+        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    if (markingStage === 'ORIGIN') {
+        // Marcando PUNTO DE ORIGEN (Color Verde)
+        if (originMarker) {
+            originMarker.setLatLng(e.latlng);
+        } else {
+            originMarker = L.marker(e.latlng, { icon: greenIcon }).addTo(map)
+                .bindPopup("PUNTO DE ORIGEN").openPopup();
+        }
+        
+        // Actualizar datos del Origen y pasar al siguiente estado
+        getAddressFromCoords(lat, lng, originInput)
+            .then(address => originAddress = address);
+        
+        markingStage = 'DESTINATION';
+        destinationInput.placeholder = "¡Marca el punto de llegada AHORA!";
+        originInput.placeholder = originInput.value;
+        destinationInput.value = ''; // Limpiar el destino anterior si existe
+
+    } else if (markingStage === 'DESTINATION') {
+        // Marcando PUNTO DE DESTINO (Color Rojo)
+        if (destinationMarker) {
+            destinationMarker.setLatLng(e.latlng);
+        } else {
+            destinationMarker = L.marker(e.latlng, { icon: redIcon }).addTo(map)
+                .bindPopup("PUNTO DE DESTINO").openPopup();
+        }
+        
+        // Actualizar datos del Destino
+        getAddressFromCoords(lat, lng, destinationInput)
+            .then(address => {
+                destinationAddress = address;
+                // Una vez que ambos puntos tienen dirección, calcular la ruta
+                if (originAddress && destinationAddress) {
+                    calculateRoute(originAddress, destinationAddress);
+                }
+            });
+
+        // Reiniciar el estado para la próxima secuencia
+        markingStage = 'ORIGIN';
+        originInput.placeholder = "Marca el punto de partida (Re-iniciar)";
+    }
+}
+
+// Asignar la función de click al mapa
+map.on('click', onMapClick);
+
+
+// ==========================================================
+// 4. CÁLCULO Y VISUALIZACIÓN DE LA RUTA
+// ==========================================================
+/**
+ * Esta función es donde se integraría la llamada a la API de navegación.
+ * En este entorno, simularemos la llamada a la herramienta para mostrar el resultado.
+ * @param {string} origin La dirección o nombre del origen.
+ * @param {string} destination La dirección o nombre del destino.
+ */
+function calculateRoute(origin, destination) {
+    console.log(`Puntos completos. Solicitando ruta de manejo:`);
+    console.log(`Origen: ${origin}`);
+    console.log(`Destino: ${destination}`);
+    
+    alert("¡Ruta marcada! Ahora se muestra la ruta de manejo en el mapa.");
+    
+    // Aquí es donde se ejecutaría la herramienta de navegación en un entorno real.
+    // La herramienta 'maps_navigation:find_directions' se encarga de dibujar la ruta.
+    
+    // --- LÓGICA DE HERRAMIENTA ---
+    // El sistema ejecutará automáticamente la llamada a la API para mostrar la ruta.
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fletero: Decisión de Pedido</title>
+    <link rel="stylesheet" href="/static/css/stylesv2.css">
+</head>
+<style>
+    .titulo{
+        padding: 50px 0;
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <h1 class="titulo">Viajes disponibles</h1>
+    <h3></h3>
+    <div class="poxicion"></div>
+    <!--cartilla 1-->
+    <div class="main-content">
+        <div class="card" data-id="F001">
+            <div class="card-header">F001 - 2025-12-10</div>
+            <div class="card-details">Origen: Maipú | Destino: Las Condes<br>Peso: 500kg, Cajas.</div>
+            <div class="buttons">
+                <button class="accept-btn" data-action="ACEPTADO">Aceptar Pedido</button>
+                <button class="reject-btn" data-action="RECHAZADO">Rechazar Pedido</button>
+            </div>
+        <div class="status-display" data-status-for="F001">Pendiente</div>
+    </div>
+    <!--cartilla 2-->
+    <div class="card" data-id="F002">
+            <div class="card-header">F002 - 2025-12-12</div>
+            <div class="card-details">Origen: Santiago | Destino: Ñuñoa<br>Peso: 250kg, Muebles.</div>
+            <div class="buttons">
+                <button class="accept-btn" data-action="ACEPTADO">Aceptar Pedido</button>
+                <button class="reject-btn" data-action="RECHAZADO">Rechazar Pedido</button>
+            </div>
+        <div class="status-display" data-status-for="F002">Pendiente</div>
+    </div>
+    <!--cartilla 3-->
+        <div class="card" data-id="F003">
+            <div class="card-header">F003 - 2025-12-15</div>
+            <div class="card-details">Origen: Puente Alto | Destino: Vitacura<br>Peso: 800kg, Materiales.</div>
+            <div class="buttons">
+                <button class="accept-btn" data-action="ACEPTADO">Aceptar Pedido</button>
+                <button class="reject-btn" data-action="RECHAZADO">Rechazar Pedido</button>
+            </div>
+        <div class="status-display" data-status-for="F003">Pendiente</div>
+    </div>
+    <!--cartilla 4-->
+    <div class="card" data-id="F004">
+            <div class="card-header">F004 - 2025-12-18</div>
+            <div class="card-details">Origen: Recoleta | Destino: Peñalolén<br>Peso: 100kg, Electrodomésticos.</div>
+            <div class="buttons">
+                <button class="accept-btn" data-action="ACEPTADO">Aceptar Pedido</button>
+                <button class="reject-btn" data-action="RECHAZADO">Rechazar Pedido</button>
+            </div>
+        <div class="status-display" data-status-for="F004">Pendiente</div>
+    </div>
+    <footer>
+        &copy; 2025 Máster Freight — Todos los derechos reservados.
+    </footer>
+    <!--javascrit-->
+    <script>
+        const STORAGE_PREFIX = 'pedidoEstado_';
+        const cards = document.querySelectorAll('.card');
+
+        function actualizarEstado(id, estado) {
+            // Guardar el estado individual en localStorage
+            localStorage.setItem(STORAGE_PREFIX + id, estado);
+            
+            // Actualizar la interfaz local
+            const statusDisplay = document.querySelector(`[data-status-for="${id}"]`);
+            statusDisplay.textContent = estado;
+            
+            // Aplicar clase CSS para color
+            statusDisplay.classList.remove('ACEPTADO', 'RECHAZADO');
+            statusDisplay.classList.add(estado);
+
+            console.log(`Pedido ${id} ${estado}`);
+        }
+
+        function cargarEstadosIniciales() {
+            cards.forEach(card => {
+                const id = card.dataset.id;
+                const estado = localStorage.getItem(STORAGE_PREFIX + id) || 'Pendiente';
+                
+                const statusDisplay = document.querySelector(`[data-status-for="${id}"]`);
+                statusDisplay.textContent = estado;
+                
+                // Asegurar que el color inicial se aplique
+                statusDisplay.classList.remove('ACEPTADO', 'RECHAZADO');
+                if (estado !== 'Pendiente') {
+                    statusDisplay.classList.add(estado);
+                }
+            });
+        }
+
+        // --- Event Listeners Globales ---
+        cards.forEach(card => {
+            card.querySelector('.buttons').addEventListener('click', (e) => {
+                const button = e.target.closest('button');
+                if (button) {
+                    const id = card.dataset.id;
+                    const action = button.dataset.action;
+                    if (action) {
+                        actualizarEstado(id, action);
+                    }
+                }
+            });
+        });
+
+        // Cargar todos los estados al inicio
+        document.addEventListener('DOMContentLoaded', cargarEstadosIniciales);
+    </script>
+
+</body>
+</html>
